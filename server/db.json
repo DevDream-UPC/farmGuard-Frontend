@@ -1,0 +1,67 @@
+{
+  "animals": [
+    {
+      "id": 1,
+      "id_animal": "321badab-d3b2-465d-9086-f52cd08c109d",
+      "name": "Blanca",
+      "species": "Vacuno",
+      "vaccines": [
+        {
+        "id": 1,
+        "name": "Vaccine 1",
+        "description": "Ayuda al estomago",
+        "date_expiration": "2024-01-15"
+      }
+      ],
+      "url_iot": "Url fake",
+      "url_photo": "https://th.bing.com/th/id/OIP.cqE6POdZh_I5SvYD4oEz-wHaE9?rs=1&pid=ImgDetMain",
+      "id_inventory": 1,
+      "location": "53.0341, 169.5588",
+      "hear_rate": "70",
+      "temperature": 38.5
+    }
+  ],
+  "vaccines": [
+    {
+      "id": 1,
+      "name": "Vaccine 1",
+      "description": "Ayuda al estomago",
+      "date_expiration": "2024-01-15"
+    }
+  ],
+
+  "profiles":
+    {
+      "id": 1,
+      "firstName": "Alex",
+      "lastName": "Cahuana Gonzales",
+      "email": "alex12@gmail.com",
+      "urlPhoto": "https://lh3.googleusercontent.com/ogw/AF2bZyhwBtP7wWR1iHvpLasqXcpS838WuM4sI6xTazCvtx7BPPA=s32-c-mo",
+      "membership": "Plan 1"
+    }
+  ,
+
+  "inventories":
+    {
+      "id": 1,
+      "id_profile": 1
+    },
+  "notifications": [
+    {
+      "id": 1,
+      "description": "Alerta animal en peligro",
+      "state": "High"
+    },
+    {
+      "id": 2,
+      "description": "Alerta animal en estado critico",
+      "state": "Medium"
+    },
+    {
+      "id": 3,
+      "description": "Alerta animal en estado Saludable",
+      "state": "Low"
+    }
+  ]
+
+}
