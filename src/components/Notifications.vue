@@ -2,35 +2,111 @@
   <div class="notifications">
     <h1 class="section-title">Inicio</h1>
     <h1>Notificaciones</h1>
-    <div class="notification-list">
-      <NotificationCard
-          v-for="notification in notifications"
-          :key="notification.id"
-          :notification="notification"
-      />
-    </div>
-    <div class="progress-bar">
-      <div
-          class="progress"
-          :style="{ width: `${(animalCount / totalAnimals) * 100}%` }"
-      ></div>
+    <div class="graphics-group">
+      <div class="notification-list">
+        <NotificationCard
+            v-for="notification in notifications"
+            :key="notification.id"
+            :notification="notification"
+        />
+      </div>
+      <div class="charts-container">
+        <div class="card flex justify-center pie-chart">
+          <Chart type="pie" :data="chartData" :options="chartOptions" class="w-full md:w-[30rem]" />
+        </div>
+        <div class="card flex justify-center mt-4 bar-chart">
+          <Chart type="bar" :data="barChartData" :options="barChartOptions" class="w-full md:w-[30rem]" />
+        </div>
+        <!-- Progress Bar -->
+        <div class="card flex justify-center mt-4">
+          <ProgressBar :value="progressValue"> {{ animalCount }} / {{ totalAnimals }} </ProgressBar>
+        </div>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
+import Chart from 'primevue/chart';
 import NotificationCard from './NotificationCard.vue';
+import ProgressBar from 'primevue/progressbar'; // Importar el componente ProgressBar
 import axios from 'axios';
 
 export default {
-  components: { NotificationCard },
+  components: { NotificationCard, Chart, ProgressBar },
+
   data() {
     return {
       notifications: [],
-      animalCount: 10, // Cambia esto según la lógica para obtener el número de animales
-      totalAnimals: 0 // Cambia esto según la lógica para contar los animales
+      animalCount: 0, // Inicializar a 0
+      totalAnimals: 100, // Establecer un total definido para el ejemplo
+      chartData: {
+        labels: ['Ovinos', 'Caballos', 'Vacas'], // Cambia esto según tus datos
+        datasets: [
+          {
+            data: [300, 50, 100], // Cambia esto según tus datos
+            backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56'],
+            hoverBackgroundColor: ['#FF6384', '#36A2EB', '#FFCE56']
+          }
+        ]
+      },
+      chartOptions: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          legend: {
+            position: 'top',
+          },
+          title: {
+            display: true,
+            text: 'Distribución de Animales'
+          }
+        }
+      },
+      barChartData: {
+        labels: ['Mastitis', 'Brucelosis', 'Fiebre Aftosa'], // Cambia esto según tus datos
+        datasets: [
+          {
+            label: 'Enero',
+            data: [25, 15, 10], // Datos de frecuencia para cada enfermedad en el primer mes
+            backgroundColor: '#FF6384',
+          },
+          {
+            label: 'Febrero',
+            data: [30, 20, 15], // Datos de frecuencia para cada enfermedad en el segundo mes
+            backgroundColor: '#36A2EB',
+          },
+          {
+            label: 'Marzo',
+            data: [20, 25, 5], // Datos de frecuencia para cada enfermedad en el tercer mes
+            backgroundColor: '#FFCE56',
+          }
+        ]
+      },
+      barChartOptions: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          legend: {
+            position: 'top',
+          },
+          title: {
+            display: true,
+            text: 'Frecuencia de Enfermedades'
+          }
+        },
+        scales: {
+          xAxes: [{
+            stacked: true // Habilitar apilamiento en el eje X
+          }],
+          yAxes: [{
+            stacked: true // Habilitar apilamiento en el eje Y
+          }]
+        }
+      }
     };
   },
+
   created() {
     axios.get('http://localhost:3000/notifications')
         .then(response => {
@@ -44,11 +120,28 @@ export default {
           this.totalAnimals = response.data.length; // Total de animales (puedes ajustar según tu lógica)
         })
         .catch(error => console.error(error));
+  },
+
+  computed: {
+    progressValue() {
+      return (this.animalCount / this.totalAnimals) * 100; // Calcular el porcentaje
+    }
   }
 };
 </script>
 
 <style scoped>
+
+.graphics-group {
+  display: flex; /* Usar flexbox para organizar la disposición */
+  gap: 2rem;
+}
+
+.notification-list{
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 10px;
+}
 
 .section-title {
   margin: 0 50px 50px 50px;
@@ -60,8 +153,27 @@ h1 {
   margin-top: 0;
 }
 
+.charts-container {
+  flex-basis: 80%; /* Ocupa el resto del ancho */
+  display: flex;
+  gap: 2rem;
+
+}
+
 .notifications {
   background-color: #77db89;
-  padding: 50px ;
+  padding: 50px;
+}
+
+.pie-chart,
+.bar-chart {
+  width: 60%;
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.card {
+  margin-top: 20px; /* Espaciado entre gráficos */
 }
 </style>

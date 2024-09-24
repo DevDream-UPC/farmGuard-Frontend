@@ -36,9 +36,13 @@
         <div>
           <img :src="profile.urlPhoto" alt="User Photo" />
         </div>
-        <div>
-          <label for="urlPhoto">Url de imagen</label>
-          <input v-model="profile.urlPhoto" type="text" id="urlPhoto" />
+        <div class="urlPhoto-info">
+          <div>
+            <label for="urlPhoto">Url de imagen</label>
+          </div>
+          <div>
+            <input v-model="profile.urlPhoto" type="text" id="urlPhoto" />
+          </div>
         </div>
       </div>
     </div>
@@ -85,6 +89,10 @@ export default {
 </script>
 
 <style scoped>
+
+label {
+  color: #707070;
+}
 
 .section-title {
   margin: 0 50px 50px 50px;
@@ -160,6 +168,16 @@ export default {
   border: none;
   border-radius: 10px;
   cursor: pointer;
+}
+
+.urlPhoto-info {
+  margin-top: 20px;
+}
+
+.urlPhoto-info div input {
+  padding: 10px 10px;
+  border-radius: 10px;
+  border: 2px solid #D7DEE7;
 }
 
 </style>
