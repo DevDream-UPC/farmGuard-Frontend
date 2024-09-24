@@ -18,8 +18,8 @@
           <Chart type="bar" :data="barChartData" :options="barChartOptions" class="w-full md:w-[30rem]" />
         </div>
         <!-- Progress Bar -->
-        <div class="card flex justify-center mt-4">
-          <ProgressBar :value="progressValue"> {{ animalCount }} / {{ totalAnimals }} </ProgressBar>
+        <div class="card">
+          <ProgressBar :value="60"> {{ value }}/100 </ProgressBar>
         </div>
       </div>
     </div>
@@ -29,7 +29,7 @@
 <script>
 import Chart from 'primevue/chart';
 import NotificationCard from './NotificationCard.vue';
-import ProgressBar from 'primevue/progressbar'; // Importar el componente ProgressBar
+import ProgressBar from 'primevue/progressbar';
 import axios from 'axios';
 
 export default {
@@ -37,9 +37,8 @@ export default {
 
   data() {
     return {
+      value: 60,
       notifications: [],
-      animalCount: 0, // Inicializar a 0
-      totalAnimals: 100, // Establecer un total definido para el ejemplo
       chartData: {
         labels: ['Ovinos', 'Caballos', 'Vacas'], // Cambia esto según tus datos
         datasets: [
@@ -103,7 +102,7 @@ export default {
             stacked: true // Habilitar apilamiento en el eje Y
           }]
         }
-      }
+      },
     };
   },
 
@@ -121,12 +120,6 @@ export default {
         })
         .catch(error => console.error(error));
   },
-
-  computed: {
-    progressValue() {
-      return (this.animalCount / this.totalAnimals) * 100; // Calcular el porcentaje
-    }
-  }
 };
 </script>
 
@@ -154,7 +147,7 @@ h1 {
 }
 
 .charts-container {
-  flex-basis: 80%; /* Ocupa el resto del ancho */
+  flex-basis: 80%;
   display: flex;
   gap: 2rem;
 
