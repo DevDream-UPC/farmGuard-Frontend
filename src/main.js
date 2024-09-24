@@ -1,17 +1,19 @@
-import { createApp } from 'vue'
-import './style.css'
-import App from './App.vue'
+import { createApp } from 'vue';
+import App from './App.vue';
+import PrimeVue from 'primevue/config';
 
-//Importar router
-import router from "./router/index.js";
+// Importa los componentes de PrimeVue que utilizarás
+import Card from 'primevue/card';
+import ProgressBar from 'primevue/progressbar';
 
-import PrimeVue from "primevue/config";
-import 'primeflex/primeflex.css';
-import Aura from '@primevue/themes/aura'
+import 'primeicons/primeicons.css';                     // iconos
+import 'primeflex/primeflex.css';                       // utilidades CSS
 
-createApp(App)
-    .use(router)
-    .use(PrimeVue,{ripple:true,
-        theme: {preset:Aura
-        }})
-    .mount('#app')
+const app = createApp(App);
+app.use(PrimeVue);
+
+// Registra los componentes
+app.component('Card', Card);
+app.component('ProgressBar', ProgressBar);
+
+app.mount('#app');
