@@ -15,18 +15,21 @@ export default {
     <template #title><h1>{{animal.name}}</h1></template>
     <template #subtitle><h2>{{animal.species}}</h2></template>
     <template #content>
-      <img :src="animal.url_photo" class="w-9">
+      <div class="flex align-items-center justify-content-center p-2">
+        <img :src="animal.url_photo" class="w-12 border-round-xl" >
+      </div>
+
       <div class="flex flex-column">
         <div class="flex">
-          <h3>Temperatura: </h3> <p>{{animal.temperature}}</p>
+          <h3>Temperatura: </h3> <p>{{animal.temperature}} °C</p>
         </div>
 
         <div class="flex">
-          <h3>Edad: </h3> <p>{{animal.years}}</p>
+          <h3>Edad: </h3> <p>{{animal.years}} años</p>
         </div>
 
         <div class="flex">
-          <h3>Ritmo Cardiaco: </h3> <p>{{animal.hear_rate}}</p>
+          <h3>Ritmo Cardiaco: </h3> <p>{{animal.hear_rate}} rpm</p>
         </div>
 
         <div class="flex">

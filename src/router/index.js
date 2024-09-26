@@ -4,7 +4,7 @@ import MyAnimalsComponent from "../animals/pages/my-animals.component.vue";
 const router = createRouter({
     history: createWebHistory(),
     routes: [
-        {path:`/my_animals`,component: MyAnimalsComponent,meta:{title:`MyAnimal`}}
+        {path:`/animals`,component: MyAnimalsComponent,meta:{title:`MyAnimal`}}
 
     ]
 
