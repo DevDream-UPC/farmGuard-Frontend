@@ -10,7 +10,8 @@ export class Animal {
         id_inventory = 0,
         location = "",
         hear_rate = 0,
-        temperature=0
+        temperature=0,
+        years=0
     ) {
         this.id = id;
         this.id_animal = id_animal;
@@ -23,5 +24,6 @@ export class Animal {
         this.location = location;
         this.hear_rate = hear_rate;
         this.temperature = temperature;
+        this.years = years;
     }
 }
