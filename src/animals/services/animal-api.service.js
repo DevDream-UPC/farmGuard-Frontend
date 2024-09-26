@@ -2,11 +2,11 @@ import http from "../../shared/services/http-common.js";
 
 export class AnimalApiService {
     getAll(){
-        return htpp.get(`/animals`);
+        return http.get(`/animals`);
     }
 
     postAnimal(resource){
-        return htt.post(`/animals`,resource);
+        return http.post(`/animals`,resource);
     }
 
     deleteAnimal(id){
