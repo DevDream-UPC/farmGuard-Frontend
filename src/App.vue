@@ -1,19 +1,16 @@
 <template>
   <div id="app">
-    <UserProfile />
-    <Notifications />
+    <nav>
+      <router-link to="/notifications">Notificaciones</router-link>
+      <router-link to="/user-profile">Perfil de Usuario</router-link>
+    </nav>
+    <router-view></router-view> <!-- Aquí se renderizarán los componentes según la ruta -->
   </div>
 </template>
 
 <script>
-import UserProfile from './components/UserProfile.vue';
-import Notifications from './components/Notifications.vue';
-
 export default {
-  components: {
-    UserProfile,
-    Notifications
-  }
+  name: 'App',
 };
 </script>
 
@@ -28,5 +25,4 @@ body {
   margin: 0;
   padding: 0;
 }
-
 </style>

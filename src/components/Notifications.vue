@@ -17,10 +17,6 @@
         <div class="card flex justify-center mt-4 bar-chart">
           <Chart type="bar" :data="barChartData" :options="barChartOptions" class="w-full md:w-[30rem]" />
         </div>
-        <!-- Progress Bar -->
-        <div class="card">
-          <ProgressBar :value="60"> {{ value }}/100 </ProgressBar>
-        </div>
       </div>
     </div>
   </div>
@@ -29,11 +25,10 @@
 <script>
 import Chart from 'primevue/chart';
 import NotificationCard from './NotificationCard.vue';
-import ProgressBar from 'primevue/progressbar';
 import axios from 'axios';
 
 export default {
-  components: { NotificationCard, Chart, ProgressBar },
+  components: { NotificationCard, Chart },
 
   data() {
     return {
@@ -51,7 +46,7 @@ export default {
       },
       chartOptions: {
         responsive: true,
-        maintainAspectRatio: false,
+        maintainAspectRatio: true,
         plugins: {
           legend: {
             position: 'top',
@@ -84,7 +79,7 @@ export default {
       },
       barChartOptions: {
         responsive: true,
-        maintainAspectRatio: false,
+        maintainAspectRatio: true,
         plugins: {
           legend: {
             position: 'top',
