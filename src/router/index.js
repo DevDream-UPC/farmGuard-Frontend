@@ -4,7 +4,7 @@ import UserProfile from '../components/UserProfile.vue'; // Asegúrate de que la
 
 const routes = [
     {
-        path: '/notifications',
+        path: '/',
         name: 'Notifications',
         component: Notifications,
         meta: { title: 'Notificaciones' }

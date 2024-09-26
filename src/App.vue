@@ -1,16 +1,16 @@
 <template>
   <div id="app">
-    <nav>
-      <router-link to="/notifications">Notificaciones</router-link>
-      <router-link to="/user-profile">Perfil de Usuario</router-link>
-    </nav>
+    <NavBar></NavBar>
     <router-view></router-view> <!-- Aquí se renderizarán los componentes según la ruta -->
   </div>
 </template>
 
 <script>
+import NavBar from "./components/NavBar.vue";
+
 export default {
   name: 'App',
+  components: {NavBar},
 };
 </script>
 
