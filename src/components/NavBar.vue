@@ -55,14 +55,22 @@ export default {
 </script>
 
 <style scoped>
-/* Estilos igual que antes */
 .navbar {
+  position: fixed; /* Fija la navbar */
+  top: 0; /* Posición superior de la ventana */
+  left: 0;
+  width: 100%; /* Asegúrate de que la navbar ocupe todo el ancho */
   display: flex;
   justify-content: space-between;
   align-items: center;
   background-color: #212121;
   padding: 10px 20px;
   color: white;
+  z-index: 1000; /* Asegúrate de que la navbar esté por encima de otros elementos */
+}
+
+body {
+  padding-top: 60px; /* Añade espacio para que el contenido no quede detrás de la navbar */
 }
 
 .logo {
@@ -122,4 +130,5 @@ export default {
 .logout-button {
   width: 30px;
 }
+
 </style>
