@@ -12,4 +12,8 @@ export class AnimalApiService {
     deleteAnimal(id){
 
     }
+
+    getById(id){
+        return http.get(`/animals?id_animal=${id}`)
+    }
 }

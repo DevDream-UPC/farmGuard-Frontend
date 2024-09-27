@@ -6,17 +6,31 @@ export default {
   components: {},
   props:{
     animal:Animal
+  },
+
+  methods:{
+    changeToPage(animal){
+      this.$router.push(
+          { path: `/${animal.id_animal}/add-edit-animal` ,
+            params: {animal}
+          });
+    }
   }
 }
 </script>
 
 <template>
-  <pv-card class="m-2">
+  <pv-card class="m-2" >
     <template #title><h1>{{animal.name}}</h1></template>
     <template #subtitle><h2>{{animal.species}}</h2></template>
     <template #content>
       <div class="flex align-items-center justify-content-center p-2">
-        <img :src="animal.url_photo" class="w-12 border-round-xl" >
+
+        <router-link :to="{name:'addOrEdit',params:{id:animal.id_animal}}">
+          <img :src="animal.url_photo" class="w-12 border-round-xl cursor-pointer" >
+        </router-link>
+
+
       </div>
 
       <div class="flex flex-column">

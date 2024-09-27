@@ -13,6 +13,8 @@ import Aura from '@primevue/themes/aura'
 import Card from "primevue/card";
 import Button from "primevue/button";
 import Paginator from 'primevue/paginator';
+import InputText from 'primevue/inputtext';
+import InputNumber from 'primevue/inputnumber';
 
 createApp(App)
     .use(router)
@@ -22,4 +24,6 @@ createApp(App)
     .component(`pv-card`,Card)
     .component('pv-button', Button)
     .component('pv-paginator', Paginator)
+    .component(`pv-input-tex`,InputText)
+    .component(`pv-input-num`,InputNumber)
     .mount('#app')
