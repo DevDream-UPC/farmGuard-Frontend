@@ -1,30 +1,34 @@
-import { createRouter, createWebHistory } from 'vue-router';
+import {createRouter, createWebHistory} from "vue-router"
+import MyAnimalsComponent from "../animals/pages/my-animals.component.vue";
+import AddEditAnimalComponent from "../animals/pages/add-edit-animal.component.vue";
 import Notifications from '../components/Notifications.vue'; // Asegúrate de que la ruta sea correcta
 import UserProfile from '../components/UserProfile.vue'; // Asegúrate de que la ruta sea correcta
 
-const routes = [
-    {
-        path: '/',
-        name: 'Notifications',
-        component: Notifications,
-        meta: { title: 'Notificaciones' }
-    },
-    {
-        path: '/user-profile',
-        name: 'UserProfile',
-        component: UserProfile,
-        meta: { title: 'Perfil de Usuario' }
-    }
-];
-
 const router = createRouter({
     history: createWebHistory(),
-    routes
+    routes: [
+        {path:`/animals`,component: MyAnimalsComponent,meta:{title:`MyAnimal`}},
+        {path:`/:id/add-edit-animal`,component: AddEditAnimalComponent,meta:{title:`AddOrEdit`},name:`addOrEdit`},
+        {
+            path: '/',
+            name: 'Notifications',
+            component: Notifications,
+            meta: { title: 'Notificaciones' }
+        },
+        {
+            path: '/user-profile',
+            name: 'UserProfile',
+            component: UserProfile,
+            meta: { title: 'Perfil de Usuario' }
+        }
+
+    ]
+
 });
 
-router.beforeEach((to, from, next) => {
+router.beforeEach((to, from, next) =>{
     let baseTitle = 'FarmGuard';
-    document.title = `${baseTitle} | ${to.meta.title}`;
+    document.title =`${baseTitle} | ${to.meta["title"]}`;
     next();
 });
 
