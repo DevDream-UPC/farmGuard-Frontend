@@ -1,28 +1,31 @@
 <template>
   <div id="app">
-    <NavBar></NavBar>
-    <router-view></router-view> <!-- Aquí se renderizarán los componentes según la ruta -->
+    <Navbar />
+    <router-view />
   </div>
 </template>
 
 <script>
-import NavBar from "./components/NavBar.vue";
+import Navbar from './components/Navbar.vue';
 
 export default {
-  name: 'App',
-  components: {NavBar},
+  components: {
+    Navbar,
+
+  },
 };
 </script>
 
-<style scoped>
+<style>
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
-  margin: 0;
-  padding: 0;
-}
-
-body {
-  margin: 0;
-  padding: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+  margin-top: 60px;
+  min-height: 100px;
+  display: flex;
+  flex-direction: column;
 }
 </style>
