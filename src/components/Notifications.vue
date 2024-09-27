@@ -102,13 +102,13 @@ export default {
   },
 
   created() {
-    axios.get('http://localhost:3000/notifications')
+    axios.get('https://my-json-server.typicode.com/Brays83/FarmGuard-Api-Fake/notifications')
         .then(response => {
           this.notifications = response.data;
         })
         .catch(error => console.error(error));
 
-    axios.get('http://localhost:3000/animals')
+    axios.get('https://my-json-server.typicode.com/Brays83/FarmGuard-Api-Fake/animals')
         .then(response => {
           this.animalCount = response.data.length; // Contar los animales
           this.totalAnimals = response.data.length; // Total de animales (puedes ajustar según tu lógica)
