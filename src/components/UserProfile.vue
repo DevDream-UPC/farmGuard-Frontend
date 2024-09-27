@@ -70,14 +70,14 @@ export default {
           .catch(error => console.error(error));
     },
     updateProfile() {
-      axios.put(`http://localhost:3000/profiles/${this.profile.id}`, this.profile)
+      axios.put(`https://my-json-server.typicode.com/Brays83/FarmGuard-Api-Fake/${this.profile.id}`, this.profile)
           .then(response => {
             alert("Perfil actualizado correctamente");
           })
           .catch(error => console.error(error));
     },
     deleteProfile() {
-      axios.delete(`http://localhost:3000/profiles/${this.profile.id}`)
+      axios.delete(`https://my-json-server.typicode.com/Brays83/FarmGuard-Api-Fake/${this.profile.id}`)
           .then(response => {
             alert("Perfil eliminado correctamente");
             this.profile = null; // Limpiar el perfil
