@@ -7,11 +7,11 @@
       "species": "Vacuno",
       "vaccines": [
         {
-        "id": 1,
-        "name": "Vaccine 1",
-        "description": "Ayuda al estomago",
-        "date_expiration": "2024-01-15"
-      }
+          "id": 1,
+          "name": "Vaccine 1",
+          "description": "Ayuda al estomago",
+          "date_expiration": "2024-01-15"
+        }
       ],
       "url_iot": "Url fake",
       "url_photo": "https://th.bing.com/th/id/OIP.cqE6POdZh_I5SvYD4oEz-wHaE9?rs=1&pid=ImgDetMain",
@@ -178,22 +178,20 @@
     }
   ],
 
-  "profiles":
-    {
-      "id": 1,
-      "firstName": "Alex",
-      "lastName": "Cahuana Gonzales",
-      "email": "alex12@gmail.com",
-      "urlPhoto": "https://lh3.googleusercontent.com/ogw/AF2bZyhwBtP7wWR1iHvpLasqXcpS838WuM4sI6xTazCvtx7BPPA=s32-c-mo",
-      "membership": "Plan 1"
-    }
-  ,
+  "profiles": {
+    "id": 1,
+    "firstName": "Alex",
+    "lastName": "Cahuana Gonzales",
+    "email": "alex12@gmail.com",
+    "urlPhoto": "https://lh3.googleusercontent.com/ogw/AF2bZyhwBtP7wWR1iHvpLasqXcpS838WuM4sI6xTazCvtx7BPPA=s32-c-mo",
+    "membership": "Plan 1"
+  },
 
-  "inventories":
-    {
-      "id": 1,
-      "id_profile": 1
-    },
+  "inventories": {
+    "id": 1,
+    "id_profile": 1
+  },
+
   "notifications": [
     {
       "id": 1,
@@ -210,6 +208,50 @@
       "description": "Alerta animal en estado Saludable",
       "state": "Low"
     }
-  ]
+  ],
 
+  "diseases": [
+    {
+      "id": 1,
+      "name": "Mastitis",
+      "description": "Inflamación de la glándula mamaria.",
+      "frequency_by_month": {
+        "January": 25,
+        "February": 30,
+        "March": 45,
+        "April": 40,
+        "May": 50,
+        "June": 35,
+        "July": 55
+      }
+    },
+    {
+      "id": 2,
+      "name": "Brucelosis",
+      "description": "Enfermedad infecciosa bacteriana que afecta a los animales.",
+      "frequency_by_month": {
+        "January": 15,
+        "February": 20,
+        "March": 25,
+        "April": 30,
+        "May": 35,
+        "June": 25,
+        "July": 40
+      }
+    },
+    {
+      "id": 3,
+      "name": "Fiebre Aftosa",
+      "description": "Enfermedad viral altamente contagiosa.",
+      "frequency_by_month": {
+        "January": 10,
+        "February": 15,
+        "March": 20,
+        "April": 25,
+        "May": 20,
+        "June": 15,
+        "July": 30
+      }
+    }
+  ]
 }
