@@ -36,7 +36,10 @@ export default {
     updateFirstAndRows(){
       if(this.screenWidth <=760){
         this.rowsPerPage = 1;
-      }else if(this.screenWidth<=1200){
+      }else if(this.screenWidth <=968){
+        this.rowsPerPage = 2;
+      }
+      else if(this.screenWidth<=1200){
         this.rowsPerPage = 6;
       }else {
         this.rowsPerPage =4;
@@ -63,7 +66,7 @@ export default {
 
 <template>
   <div class="grid"  >
-    <div v-for="animal in animalsCard4" class="xl:col-3 md:col-4 sm:col-12" >
+    <div v-for="animal in animalsCard4" class="xl:col-3 lg:col-6 md:col-6 sm:col-12" >
       <animals-card :animal="animal"></animals-card>
     </div>
   </div>

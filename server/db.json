@@ -1,10 +1,10 @@
 {
   "animals": [
     {
-      "id": 1,
+      "id": "1",
       "id_animal": "321badab-d3b2-465d-9086-f52cd08c109d",
       "name": "Blanca",
-      "species": "Vacuno",
+      "species": "Mamíferos",
       "vaccines": [
         {
           "id": 1,
@@ -20,12 +20,12 @@
       "hear_rate": "70",
       "temperature": 38.5,
       "years": 5
-    }
-  ,{
-      "id": 2,
+    },
+    {
+      "id": "2",
       "id_animal": "321badab-d3b2-465d-9086-f52cd08c109a",
-      "name": "Blanca 1",
-      "species": "Vacuno",
+      "name": "Pastor",
+      "species": "Mamíferos",
       "vaccines": [
         {
           "id": 1,
@@ -35,18 +35,18 @@
         }
       ],
       "url_iot": "Url fake",
-      "url_photo": "https://th.bing.com/th/id/OIP.cqE6POdZh_I5SvYD4oEz-wHaE9?rs=1&pid=ImgDetMain",
+      "url_photo": "https://th.bing.com/th/id/R.ff4f145f9e6fc27d08a6493948a3a1ff?rik=QnBlaSoT2bdgUw&riu=http%3a%2f%2fwww.mundoperro.net%2fwp-content%2fuploads%2fpastor-aleman-adulto.jpg&ehk=78XPzF0dZwh1GTtWaMEe%2fjQUqePSeRviH1EZWQ49rqM%3d&risl=&pid=ImgRaw&r=0",
       "id_inventory": 1,
       "location": "53.0341, 169.5588",
-      "hear_rate": "70",
+      "hear_rate": 70,
       "temperature": 38.5,
-      "years": 5
-    }
-  ,{
-      "id": 3,
+      "years": 2
+    },
+    {
+      "id": "3",
       "id_animal": "321badab-d3b2-465d-9086-f52cd08c109b",
-      "name": "Blanca2",
-      "species": "Vacuno",
+      "name": "Gallito de las rocas",
+      "species": "Aves",
       "vaccines": [
         {
           "id": 1,
@@ -56,18 +56,18 @@
         }
       ],
       "url_iot": "Url fake",
-      "url_photo": "https://th.bing.com/th/id/OIP.cqE6POdZh_I5SvYD4oEz-wHaE9?rs=1&pid=ImgDetMain",
+      "url_photo": "https://www.wamanadventures.com/blog/wp-content/uploads/2020/05/GALLO-DE-LAS-ROCAS.jpg",
       "id_inventory": 1,
       "location": "53.0341, 169.5588",
       "hear_rate": "70",
       "temperature": 38.5,
-      "years": 5
-    }
-  ,{
-      "id": 4,
+      "years": 2
+    },
+    {
+      "id": "4",
       "id_animal": "321badab-d3b2-465d-9086-f52cd08c109c",
-      "name": "Blanca3",
-      "species": "Vacuno",
+      "name": "arañita",
+      "species": "Arácnidos",
       "vaccines": [
         {
           "id": 1,
@@ -77,17 +77,17 @@
         }
       ],
       "url_iot": "Url fake",
-      "url_photo": "https://th.bing.com/th/id/OIP.cqE6POdZh_I5SvYD4oEz-wHaE9?rs=1&pid=ImgDetMain",
+      "url_photo": "https://th.bing.com/th/id/OIP.NjgN7jPLCTUIVZAnjDbIfAHaE5?rs=1&pid=ImgDetMain",
       "id_inventory": 1,
       "location": "53.0341, 169.5588",
       "hear_rate": "70",
       "temperature": 38.5,
       "years": 5
-    }
-  ,{
-      "id": 5,
+    },
+    {
+      "id": "5",
       "id_animal": "321badab-d3b2-465d-9086-f52cd08c109e",
-      "name": "Blanca4",
+      "name": "Zorro",
       "species": "Vacuno",
       "vaccines": [
         {
@@ -98,15 +98,15 @@
         }
       ],
       "url_iot": "Url fake",
-      "url_photo": "https://th.bing.com/th/id/OIP.cqE6POdZh_I5SvYD4oEz-wHaE9?rs=1&pid=ImgDetMain",
+      "url_photo": "https://th.bing.com/th/id/OIP.zpp5DNCbIE5KbE1AuHPCmQHaFj?rs=1&pid=ImgDetMain",
       "id_inventory": 1,
       "location": "53.0341, 169.5588",
       "hear_rate": "70",
       "temperature": 38.5,
       "years": 5
-    }
-  ,{
-      "id": 6,
+    },
+    {
+      "id": "6",
       "id_animal": "321badab-d3b2-465d-9086-f52cd08c109f",
       "name": "Blanca5",
       "species": "Vacuno",
@@ -125,9 +125,9 @@
       "hear_rate": "70",
       "temperature": 38.5,
       "years": 5
-    }
-  ,{
-      "id": 7,
+    },
+    {
+      "id": "7",
       "id_animal": "321badab-d3b2-465d-9086-f52cd08c109g",
       "name": "Blanca6",
       "species": "Vacuno",
@@ -146,9 +146,9 @@
       "hear_rate": "70",
       "temperature": 38.5,
       "years": 5
-    }
-  ,{
-      "id": 8,
+    },
+    {
+      "id": "8",
       "id_animal": "321badab-d3b2-465d-9086-f52cd08c109h",
       "name": "Blanca7",
       "species": "Vacuno",
@@ -171,13 +171,12 @@
   ],
   "vaccines": [
     {
-      "id": 1,
+      "id": "1",
       "name": "Vaccine 1",
       "description": "Ayuda al estomago",
       "date_expiration": "2024-01-15"
     }
   ],
-
   "profiles": {
     "id": 1,
     "firstName": "Alex",
@@ -186,33 +185,30 @@
     "urlPhoto": "https://lh3.googleusercontent.com/ogw/AF2bZyhwBtP7wWR1iHvpLasqXcpS838WuM4sI6xTazCvtx7BPPA=s32-c-mo",
     "membership": "Plan 1"
   },
-
   "inventories": {
     "id": 1,
     "id_profile": 1
   },
-
   "notifications": [
     {
-      "id": 1,
+      "id": "1",
       "description": "Alerta animal en peligro",
       "state": "High"
     },
     {
-      "id": 2,
+      "id": "2",
       "description": "Alerta animal en estado critico",
       "state": "Medium"
     },
     {
-      "id": 3,
+      "id": "3",
       "description": "Alerta animal en estado Saludable",
       "state": "Low"
     }
   ],
-
   "diseases": [
     {
-      "id": 1,
+      "id": "1",
       "name": "Mastitis",
       "description": "Inflamación de la glándula mamaria.",
       "frequency_by_month": {
@@ -226,7 +222,7 @@
       }
     },
     {
-      "id": 2,
+      "id": "2",
       "name": "Brucelosis",
       "description": "Enfermedad infecciosa bacteriana que afecta a los animales.",
       "frequency_by_month": {
@@ -240,7 +236,7 @@
       }
     },
     {
-      "id": 3,
+      "id": "3",
       "name": "Fiebre Aftosa",
       "description": "Enfermedad viral altamente contagiosa.",
       "frequency_by_month": {
@@ -252,6 +248,48 @@
         "June": 15,
         "July": 30
       }
+    }
+  ],
+  "species": [
+    {
+      "id": 1,
+      "name": "Mamíferos"
+    },
+    {
+      "id": 2,
+      "name": "Aves"
+    },
+    {
+      "id": 3,
+      "name": "Reptiles"
+    },
+    {
+      "id": 4,
+      "name": "Anfibios"
+    },
+    {
+      "id": 5,
+      "name": "Peces"
+    },
+    {
+      "id": 6,
+      "name": "Insectos"
+    },
+    {
+      "id": 7,
+      "name": "Arácnidos"
+    },
+    {
+      "id": 8,
+      "name": "Moluscos"
+    },
+    {
+      "id": 9,
+      "name": "Crustáceos"
+    },
+    {
+      "id": 10,
+      "name": "Equinodermos"
     }
   ]
 }

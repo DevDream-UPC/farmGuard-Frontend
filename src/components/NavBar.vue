@@ -12,7 +12,7 @@
       <router-link to="/Animals">Animales</router-link>
       <router-link to="/Alerts">Alertas</router-link>
       <router-link to="/Vaccines">Vacunas</router-link>
-      <router-link to="/Contact">Contáctenos</router-link>
+      <router-link to="/Contact">Recomendaciones</router-link>
     </div>
 
     <!-- Foto de perfil y Botón de Logout -->

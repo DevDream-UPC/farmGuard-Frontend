@@ -2,6 +2,8 @@
 import {AnimalApiService} from "../services/animal-api.service.js";
 import {Animal} from "../model/animal.entity.js";
 import AnimalsList from "../components/animals-list.component.vue";
+import {Vaccine} from "../model/vaccine.entity.js";
+
 
 
 
@@ -20,6 +22,21 @@ export default {
     this.getAllAnimals();
   },
   methods:{
+    buildVaccineFromResource(vaccines){
+      if(vaccines){
+        return vaccines.map(vaccine =>{
+          return new Vaccine(
+              vaccine.id,
+              vaccine.name,
+              vaccine.description,
+              vaccine.date_expiration
+          )
+        })
+      }else{
+        return new Vaccine();
+      }
+
+    },
     buildAnimalFromResponseData(animals){
       return animals.map(animal =>{
         return new Animal(
@@ -27,7 +44,7 @@ export default {
             animal.id_animal,
             animal.name,
             animal.species,
-            animal.vaccies,
+            this.buildVaccineFromResource(animal.vaccines),
             animal.url_iot,
             animal.url_photo,
             animal.id_inventory,
@@ -38,6 +55,7 @@ export default {
         )
       })
     },
+
 
     getAllAnimals(){
       this.animalsApi.getAll()
@@ -57,7 +75,7 @@ export default {
 
 <template>
 
-  <div class="p-5" style="background-color: #4ADE80; ">
+  <div class="p-5 m-6" style="background-color: #4ADE80; ">
     <div>
       <h1>Mis Animales</h1>
       <hr>

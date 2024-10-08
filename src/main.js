@@ -15,13 +15,19 @@ import Button from "primevue/button";
 import Paginator from 'primevue/paginator';
 import InputText from 'primevue/inputtext';
 import InputNumber from 'primevue/inputnumber';
+import Select from 'primevue/select';
+import Toast from 'primevue/toast';
+import ToastService from "primevue/toastservice";
 
 createApp(App)
     .use(router)
+    .use(ToastService)
     .use(PrimeVue,{ripple:true,
         theme: {preset:Aura
         }})
+    .component(`pv-toast`,Toast)
     .component(`pv-card`,Card)
+    .component(`pv-select`,Select)
     .component('pv-button', Button)
     .component('pv-paginator', Paginator)
     .component(`pv-input-tex`,InputText)
