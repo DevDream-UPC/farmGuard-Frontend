@@ -18,6 +18,9 @@ import InputNumber from 'primevue/inputnumber';
 import Select from 'primevue/select';
 import Toast from 'primevue/toast';
 import ToastService from "primevue/toastservice";
+import Toolbar from 'primevue/toolbar';
+import Menu from 'primevue/menu';
+
 
 createApp(App)
     .use(router)
@@ -25,6 +28,8 @@ createApp(App)
     .use(PrimeVue,{ripple:true,
         theme: {preset:Aura
         }})
+    .component(`pv-menu`, Menu)
+    .component(`pv-toolbar`, Toolbar)
     .component(`pv-toast`,Toast)
     .component(`pv-card`,Card)
     .component(`pv-select`,Select)

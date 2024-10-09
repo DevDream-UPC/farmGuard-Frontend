@@ -75,9 +75,9 @@ export default {
 
 <template>
 
-  <div class="p-5 m-6" style="background-color: #4ADE80; ">
-    <div>
-      <h1>Mis Animales</h1>
+  <div class="p-5" style="background-color: #4ADE80; ">
+    <div >
+      <h1 class="font-bold text-black-alpha-90 m-0  xl:text-6xl lg:text-6xl  md:text-6xl  sm:text-3xl ">Mis Animales</h1>
       <hr>
     </div>
 
@@ -94,12 +94,7 @@ export default {
 </template>
 
 <style scoped>
- h1{
-   font-size: 48px;
-   font-weight: bold;
-   color: black;
-   margin: 0;
- }
+
  hr{
    border: 2px solid black;
  }

@@ -1,41 +1,60 @@
 <template>
-  <nav class="navbar">
-    <!-- Logotipo -->
-    <div class="logo">
-      <img src="../assets/farmguard-logo.png" alt="FarmGuard Logo">
-      <span>FarmGuard</span>
-    </div>
+  <pv-toolbar>
+    <template #start>
+      <div class="flex align-items-center gap-2">
+        <img src="../assets/farmguard-logo.png" alt="FarmGuard Logo">
+        <span class="spam-logo">FarmGuard</span>
+      </div>
+    </template>
+    <template #center>
+      <div class="hidden xl:flex gap-2 lg:flex gap-2 md:flex gap-2" >
+        <router-link v-for="item in items" class="a-nav" :to="item.url">{{item.label}}</router-link>
 
-    <!-- Enlaces de navegación -->
-    <div class="nav-links">
-      <router-link to="/">Inicio</router-link>
-      <router-link to="/Animals">Animales</router-link>
-      <router-link to="/Alerts">Alertas</router-link>
-      <router-link to="/Vaccines">Vacunas</router-link>
-      <router-link to="/Contact">Recomendaciones</router-link>
-    </div>
+      </div>
+      <div class="xl:hidden lg:hidden md:hidden sm:flex" style="color: white">
+        <pv-button @click="toggle">Menú</pv-button>
+        <pv-menu ref="menu" :model="items" :popup="true" ></pv-menu>
+      </div>
 
-    <!-- Foto de perfil y Botón de Logout -->
-    <div class="logout">
-      <!-- Aquí añadimos el @click para redirigir a UserProfile -->
-      <img :src="profile.urlPhoto" class="profile-photo" alt="User Photo" @click="goToProfile" />
-      <button>
-        <img src="../assets/move_item.png" class="logout-button" alt="Logout">
-      </button>
-    </div>
-  </nav>
+    </template>
+    <template #end>
+      <div class="flex align-items-center">
+        <!-- Aquí añadimos el @click para redirigir a UserProfile -->
+        <img :src="profile.urlPhoto" class="profile-photo" alt="User Photo" @click="goToProfile" />
+        <button>
+          <img src="../assets/move_item.png" class="logout-button" alt="Logout">
+        </button>
+      </div>
+
+    </template>
+
+  </pv-toolbar>
+
 </template>
 
 <script>
 import axios from 'axios';
 
+
+
+
 export default {
+  components: {},
   data() {
     return {
       profile: `{this.profile.urlPhoto}`,
+      items: [
+        {label:"Inicio", url:'/' },
+        {label:"Animales", url:'/Animals' },
+        {label:"Alertas", url:'/Alerts' },
+        {label:"Vacunas", url:'/Vaccines' },
+        {label:"Recomendaciones", url:'/recomend' }
+
+      ]
     };
   },
   created() {
+
     this.getProfile();
   },
   methods: {
@@ -50,6 +69,10 @@ export default {
     goToProfile() {
       this.$router.push({ name: 'UserProfile' }); // Usa el nombre de la ruta
     },
+    toggle(event) {
+      this.$refs.menu.toggle(event);
+
+    }
   },
 };
 </script>
@@ -73,28 +96,21 @@ body {
   padding-top: 60px; /* Añade espacio para que el contenido no quede detrás de la navbar */
 }
 
-.logo {
-  display: flex;
-  align-items: center;
-}
 
 .logo img {
   width: 40px;
   margin-right: 10px;
 }
 
-.logo span {
+.spam-logo {
   font-size: 1.2rem;
   font-weight: bold;
 }
 
 /* Estilo para los enlaces de navegación */
-.nav-links {
-  display: flex;
-  gap: 20px;
-}
 
-.nav-links a {
+
+.a-nav {
   color: white;
   text-decoration: none;
   font-size: 1rem;
@@ -102,7 +118,7 @@ body {
   transition: background 0.3s;
 }
 
-.nav-links a:hover {
+.a-nav:hover {
   background-color: rgba(255, 255, 255, 0.1);
   border-radius: 5px;
 }
@@ -116,12 +132,9 @@ body {
 }
 
 /* Estilo para el botón de logout */
-.logout {
-  display: flex;
-  align-items: center;
-}
 
-.logout button {
+
+.logout-button {
   background-color: transparent;
   border: none;
   cursor: pointer;
@@ -129,6 +142,14 @@ body {
 
 .logout-button {
   width: 30px;
+}
+
+.p-toolbar{
+  background-color: #212121;
+}
+
+.p-button{
+  background-color: #4ADE80;
 }
 
 </style>

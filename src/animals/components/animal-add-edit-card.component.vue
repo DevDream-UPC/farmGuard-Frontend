@@ -61,7 +61,7 @@
 <template>
   <!--xl:col-3 md:col-4 sm:col-12-->
 
-  <div class="flex justify-content-center align-content-center mt-8 p-4 " >
+  <div class="flex justify-content-center align-content-center mt-4 p-4 " >
     <pv-card class="h-auto">
       <template #title>
         <h1>{{animal.name}}</h1>
