@@ -75,11 +75,11 @@ export default {
                     years: this.animal.age,
                     url_iot: this.animal.sensorUrl,
                     url_photo: this.animal.imageUrl,
-                    vaccines: [],
-                    id_inventory: 1,
-                    location: '53.0341, 169.5588',
-                    hear_rate: '70',
-                    temperature: 38.5,
+                    vaccines: 0,
+                    id_inventory: 0,
+                    location: 0,
+                    hear_rate: 0,
+                    temperature: 0,
                 };
 
                 const response = await fetch('http://localhost:3000/animals', {
