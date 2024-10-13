@@ -3,11 +3,14 @@ import MyAnimalsComponent from "../animals/pages/my-animals.component.vue";
 import AddEditAnimalComponent from "../animals/pages/add-edit-animal.component.vue";
 import Notifications from '../components/Notifications.vue'; // Asegúrate de que la ruta sea correcta
 import UserProfile from '../components/UserProfile.vue'; // Asegúrate de que la ruta sea correcta
+import AddAnimal from "../animals/pages/add-animal.component.vue";
+
 
 const router = createRouter({
     history: createWebHistory(),
     routes: [
         {path:`/animals`,component: MyAnimalsComponent,meta:{title:`MyAnimal`}},
+        {path: '/add-animal', component: AddAnimal },
         {path:`/:id/add-edit-animal`,component: AddEditAnimalComponent,meta:{title:`AddOrEdit`},name:`addOrEdit`},
         {
             path: '/',
