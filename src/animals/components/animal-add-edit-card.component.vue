@@ -119,6 +119,12 @@
               <img :src="animal.url_photo" class="w-8 border-round-xl">
             </div>
 
+            
+            <router-link to="VaccineList">
+              <pv-button label="Vacunas" severity="primary" text raised />
+            </router-link>
+
+
             <div class="flex flex-column">
               <label for="url_photo">Url de Imagen</label>
               <pv-input-tex v-model.trim="animal.url_photo" />
