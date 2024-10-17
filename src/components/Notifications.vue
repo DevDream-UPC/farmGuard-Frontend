@@ -92,7 +92,7 @@ export default {
         .catch(error => console.error(error));
 
     // Fetch animals and prepare chart data
-    axios.get('https://my-json-server.typicode.com/Brays83/FarmGuard-Api-Fake/animals')
+    axios.get('http://localhost:3000/animals')
         .then(response => {
           const animals = response.data;
 
