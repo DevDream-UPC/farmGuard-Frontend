@@ -17,7 +17,7 @@
       "url_photo": "https://th.bing.com/th/id/OIP.cqE6POdZh_I5SvYD4oEz-wHaE9?rs=1&pid=ImgDetMain",
       "id_inventory": 1,
       "location": "53.0341, 169.5588",
-      "hear_rate": "70",
+      "hear_rate": 78,
       "temperature": 38.5,
       "years": 5
     },
@@ -252,43 +252,43 @@
   ],
   "species": [
     {
-      "id": 1,
+      "id": "1",
       "name": "Mamíferos"
     },
     {
-      "id": 2,
+      "id": "2",
       "name": "Aves"
     },
     {
-      "id": 3,
+      "id": "3",
       "name": "Reptiles"
     },
     {
-      "id": 4,
+      "id": "4",
       "name": "Anfibios"
     },
     {
-      "id": 5,
+      "id": "5",
       "name": "Peces"
     },
     {
-      "id": 6,
+      "id": "6",
       "name": "Insectos"
     },
     {
-      "id": 7,
+      "id": "7",
       "name": "Arácnidos"
     },
     {
-      "id": 8,
+      "id": "8",
       "name": "Moluscos"
     },
     {
-      "id": 9,
+      "id": "9",
       "name": "Crustáceos"
     },
     {
-      "id": 10,
+      "id": "10",
       "name": "Equinodermos"
     }
   ]
