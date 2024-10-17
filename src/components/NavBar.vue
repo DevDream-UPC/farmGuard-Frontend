@@ -1,5 +1,5 @@
 <template>
-  <pv-toolbar>
+  <pv-toolbar class="toolbar">
     <template #start>
       <div class="flex align-items-center gap-2">
         <img src="../assets/farmguard-logo.png" alt="FarmGuard Logo">
@@ -34,8 +34,6 @@
 
 <script>
 import axios from 'axios';
-
-
 
 
 export default {
@@ -78,6 +76,8 @@ export default {
 </script>
 
 <style scoped>
+
+
 .navbar {
   position: fixed; /* Fija la navbar */
   top: 0; /* Posición superior de la ventana */
@@ -91,6 +91,12 @@ export default {
   color: white;
   z-index: 1000; /* Asegúrate de que la navbar esté por encima de otros elementos */
 }
+
+.toolbar {
+  border-radius: 0 !important; /* Ensures border radius is removed */
+  border: none;
+}
+
 
 body {
   padding-top: 60px; /* Añade espacio para que el contenido no quede detrás de la navbar */
@@ -144,12 +150,5 @@ body {
   width: 30px;
 }
 
-.p-toolbar{
-  background-color: #212121;
-}
-
-.p-button{
-  background-color: #4ADE80;
-}
 
 </style>
