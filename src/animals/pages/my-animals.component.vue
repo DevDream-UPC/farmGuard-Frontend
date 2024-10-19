@@ -2,6 +2,7 @@
 import {AnimalApiService} from "../services/animal-api.service.js";
 import {Animal} from "../model/animal.entity.js";
 import AnimalsList from "../components/animals-list.component.vue";
+import {Vaccine} from "../model/vaccine.entity.js";
 
 
 
@@ -20,6 +21,21 @@ export default {
     this.getAllAnimals();
   },
   methods:{
+    buildVaccineFromResource(vaccines){
+      if(vaccines){
+        return vaccines.map(vaccine =>{
+          return new Vaccine(
+              vaccine.id,
+              vaccine.name,
+              vaccine.description,
+              vaccine.date_expiration
+          )
+        })
+      }else{
+        return new Vaccine();
+      }
+
+    },
     buildAnimalFromResponseData(animals){
       return animals.map(animal =>{
         return new Animal(
