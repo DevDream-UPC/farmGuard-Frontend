@@ -21,9 +21,10 @@
       <div class="flex align-items-center">
         <!-- Aquí añadimos el @click para redirigir a UserProfile -->
         <img :src="profile.urlPhoto" class="profile-photo" alt="User Photo" @click="goToProfile" />
-        <button icon="pi-sign-out" aria-label="Save">
-
+        <button style="background: none; border: none; cursor: pointer;" @click="goToProfile">
+          <i class="pi pi-sign-out" style="font-size:30px"/>
         </button>
+
       </div>
 
     </template>

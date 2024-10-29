@@ -5,6 +5,7 @@ import Notifications from '../components/Notifications.vue'; // Asegúrate de qu
 import UserProfile from '../components/UserProfile.vue'; // Asegúrate de que la ruta sea correcta
 import AddAnimal from "../animals/pages/add-animal.component.vue";
 import ViewVaccinesComponent from "../vaccines/pages/view-vaccines.component.vue";
+import AddVaccineAnimalComponent from "../vaccines/pages/Add-Vaccine-Animal.component.vue";
 
 
 const router = createRouter({
@@ -28,7 +29,14 @@ const router = createRouter({
         {
             path: `/:id/vaccines`,
             component:ViewVaccinesComponent,
-            name:'Vaccines',
+            name:'ViewVaccines',
+            meta:{title:`ViewVaccines`}
+        },
+        {
+            path: `/:id/add-vaccines`,
+            component: AddVaccineAnimalComponent,
+            name:'AddVaccines',
+            meta:{title:`AddVaccines`}
         }
 
     ]

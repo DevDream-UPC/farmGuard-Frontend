@@ -126,12 +126,14 @@
             <div class="flex flex-column">
               <label for="url_photo">Url de Imagen</label>
               <pv-input-tex v-model.trim="animal.url_photo" />
-              <!--Boton a pagina de vacunas -->
+
             </div>
 
+            <!--Boton a pagina de vacunas -->
             <div class="flex justify-content-center">
-              <router-link to="/:id/vaccines">
-                <pv-button >Vacunas</pv-button>
+
+              <router-link :to="{name:'ViewVaccines',params:{id:animal.id_animal}}">
+                <pv-button> <i class="pi pi-receipt"/> Vacunas</pv-button>
               </router-link>
             </div>
 
@@ -144,6 +146,8 @@
           <router-link to="/animals">
             <pv-button severity="danger" >Cancelar</pv-button>
           </router-link>
+
+
 
           <pv-button severity="success" @click="putAnimalById(animal)" >Actualizar</pv-button>
         </div>

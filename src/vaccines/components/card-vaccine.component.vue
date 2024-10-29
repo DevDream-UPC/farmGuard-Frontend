@@ -13,13 +13,8 @@ export default {
 </script>
 
 <template>
-  <div class="grid">
-    <h5 class="col-3 flex justify-content-center">Icono</h5>
-    <h5 class="col-3 flex justify-content-center">Nombre</h5>
-    <h5 class="col-3 flex justify-content-center">Descripcion</h5>
-    <h5 class="col-3 flex justify-content-center">Fecha de expiracion</h5>
-  </div>
-  <pv-card>
+
+  <pv-card class="mb-4">
     <template #content>
       <div class="grid">
         <div class="col-3 flex justify-content-center">
@@ -30,7 +25,6 @@ export default {
         <p class="col-3 flex justify-content-center">{{vaccine.date_expiration}}</p>
       </div>
     </template>
-
   </pv-card>
 
 </template>
