@@ -2,7 +2,7 @@
 import {AnimalApiService} from "../services/animal-api.service.js";
 import {Animal} from "../model/animal.entity.js";
 import AnimalsList from "../components/animals-list.component.vue";
-import {Vaccine} from "../model/vaccine.entity.js";
+import {Vaccine} from "../../vaccines/model/vaccine.entity.js";
 
 
 
