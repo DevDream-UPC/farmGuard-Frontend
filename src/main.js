@@ -20,7 +20,8 @@ import Toast from 'primevue/toast';
 import ToastService from "primevue/toastservice";
 import Toolbar from 'primevue/toolbar';
 import Menu from 'primevue/menu';
-
+import InputMask from 'primevue/inputmask';
+import DatePicker from 'primevue/datepicker';
 
 createApp(App)
     .use(router)
@@ -28,6 +29,8 @@ createApp(App)
     .use(PrimeVue,{ripple:true,
         theme: {preset:Aura
         }})
+    .component(`pv-input-date`,DatePicker)
+    .component(`pv-input-mask`,InputMask)
     .component(`pv-menu`, Menu)
     .component(`pv-toolbar`, Toolbar)
     .component(`pv-toast`,Toast)

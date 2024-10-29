@@ -2,7 +2,7 @@
 import AnimalAddEditCard from "../components/animal-add-edit-card.component.vue";
 import {Animal} from "../model/animal.entity.js";
 import {AnimalApiService} from "../services/animal-api.service.js";
-import {Vaccine} from "../model/vaccine.entity.js";
+import {Vaccine} from "../../vaccines/model/vaccine.entity.js";
 
 export default {
   name: "add-edit-animal",

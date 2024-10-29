@@ -11,6 +11,18 @@
           "name": "Vaccine 1",
           "description": "Ayuda al estomago",
           "date_expiration": "2024-01-15"
+        },
+        {
+          "id": "1",
+          "name": "Vaccine 2",
+          "description": "Ayuda al estomago",
+          "date_expiration": "2024-01-15"
+        },
+        {
+          "id": "1",
+          "name": "Vaccine 3",
+          "description": "Ayuda al estomago",
+          "date_expiration": "2024-01-15"
         }
       ],
       "url_iot": "Url fake",
@@ -167,12 +179,56 @@
       "hear_rate": "70",
       "temperature": 38.5,
       "years": 5
+    },
+    {
+      "id": "21c4",
+      "id_animal": "64eef090-7fdd-4e1c-81ff-cda03ef86f9e",
+      "name": "prueba",
+      "species": "Anfibios",
+      "years": 7,
+      "url_iot": "fake",
+      "url_photo": "https://png.pngtree.com/png-clipart/20230413/original/pngtree-cow-cartoon-illustration-png-image_9050067.png",
+      "vaccines": 0,
+      "id_inventory": 0,
+      "location": 0,
+      "hear_rate": 0,
+      "temperature": 0
     }
   ],
   "vaccines": [
     {
       "id": "1",
       "name": "Vaccine 1",
+      "description": "Ayuda al estomago",
+      "date_expiration": "2024-01-15"
+    },
+    {
+      "id": "1",
+      "name": "Vaccine 2",
+      "description": "Ayuda al estomago",
+      "date_expiration": "2024-01-15"
+    },
+    {
+      "id": "1",
+      "name": "Vaccine 3",
+      "description": "Ayuda al estomago",
+      "date_expiration": "2024-01-15"
+    },
+    {
+      "id": "1",
+      "name": "Vaccine 4",
+      "description": "Ayuda al estomago",
+      "date_expiration": "2024-01-15"
+    },
+    {
+      "id": "1",
+      "name": "Vaccine 5",
+      "description": "Ayuda al estomago",
+      "date_expiration": "2024-01-15"
+    },
+    {
+      "id": "1",
+      "name": "Vaccine 6",
       "description": "Ayuda al estomago",
       "date_expiration": "2024-01-15"
     }
