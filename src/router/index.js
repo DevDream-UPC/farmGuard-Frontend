@@ -4,6 +4,7 @@ import AddEditAnimalComponent from "../animals/pages/add-edit-animal.component.v
 import Notifications from '../components/Notifications.vue'; // Asegúrate de que la ruta sea correcta
 import UserProfile from '../components/UserProfile.vue'; // Asegúrate de que la ruta sea correcta
 import AddAnimal from "../animals/pages/add-animal.component.vue";
+import ViewVaccinesComponent from "../vaccines/pages/view-vaccines.component.vue";
 
 
 const router = createRouter({
@@ -23,6 +24,11 @@ const router = createRouter({
             name: 'UserProfile',
             component: UserProfile,
             meta: { title: 'Perfil de Usuario' }
+        },
+        {
+            path: `/:id/vaccines`,
+            component:ViewVaccinesComponent,
+            name:'Vaccines',
         }
 
     ]

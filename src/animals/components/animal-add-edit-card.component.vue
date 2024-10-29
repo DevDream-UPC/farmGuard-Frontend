@@ -10,6 +10,7 @@
 
 
 
+
   export default {
     name: "animal-add-edit-card",
     components: {},
@@ -29,6 +30,9 @@
       this.getSpecies()
     },
     methods:{
+      changePag(){
+
+      },
 
       putAnimalById(animal){
         this.animalsApi.putAnimal(animal).then(response => {
@@ -122,6 +126,13 @@
             <div class="flex flex-column">
               <label for="url_photo">Url de Imagen</label>
               <pv-input-tex v-model.trim="animal.url_photo" />
+              <!--Boton a pagina de vacunas -->
+            </div>
+
+            <div class="flex justify-content-center">
+              <router-link to="/:id/vaccines">
+                <pv-button >Vacunas</pv-button>
+              </router-link>
             </div>
 
 
