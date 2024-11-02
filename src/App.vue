@@ -1,7 +1,8 @@
 <template>
   <div id="app">
-    <NavBar></NavBar>
-    <router-view></router-view> <!-- Aquí se renderizarán los componentes según la ruta -->
+    <NavBar class=""></NavBar>
+    <router-view></router-view><!-- Aquí se renderizarán los componentes según la ruta -->
+    <pv-toast/>
   </div>
 </template>
 

@@ -27,7 +27,7 @@ export default {
       <div class="flex align-items-center justify-content-center p-2">
 
         <router-link :to="{name:'addOrEdit',params:{id:animal.id_animal}}">
-          <img :src="animal.url_photo" class="w-12 border-round-xl cursor-pointer" >
+          <img :src="animal.url_photo" class="w-12 h-12 border-round-xl cursor-pointer" >
         </router-link>
 
 

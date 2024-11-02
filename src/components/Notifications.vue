@@ -1,8 +1,12 @@
 <template>
-  <div class="notifications">
+  <div class="p-5">
     <h1 class="section-title">Inicio</h1>
-    <h1>Notificaciones</h1>
-    <div class="graphics-group">
+  </div>
+
+  <div class="grid p-5 ">
+
+    <div class="h-auto p-fluid col-6">
+      <h1>Notificaciones</h1>
       <div class="notification-list">
         <NotificationCard
             v-for="notification in notifications"
@@ -10,13 +14,14 @@
             :notification="notification"
         />
       </div>
-      <div class="charts-container">
-        <div class="card flex justify-center pie-chart">
-          <Chart type="pie" :data="chartData" :options="chartOptions" class="w-full md:w-[30rem]" />
-        </div>
-        <div class="card flex justify-center mt-4 bar-chart">
-          <Chart type="bar" :data="barChartData" :options="barChartOptions" class="w-full md:w-[30rem]" />
-        </div>
+    </div>
+
+    <div class="flex flex-wrap justify-content-center pt-5 gap-4 col-6">
+      <div class="card flex notification-list pie-chart-container">
+        <Chart class="measures-pie" type="pie" :data="chartData" :options="chartOptions" />
+      </div>
+      <div class="card flex notification-list bar-chart-container">
+        <Chart class="measures-bar" type="bar" :data="barChartData" :options="barChartOptions" />
       </div>
     </div>
   </div>
@@ -32,21 +37,23 @@ export default {
 
   data() {
     return {
-      value: 60,
       notifications: [],
       chartData: {
-        labels: ['Ovinos', 'Caballos', 'Vacas'], // Cambia esto según tus datos
+        labels: [],
         datasets: [
           {
-            data: [300, 50, 100], // Cambia esto según tus datos
             backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56'],
-            hoverBackgroundColor: ['#FF6384', '#36A2EB', '#FFCE56']
           }
         ]
       },
+      // Initialize barChartData as an empty object
+      barChartData: {
+        labels: [], // Months will be added here
+        datasets: [] // Frequency data will be added here
+      },
       chartOptions: {
         responsive: true,
-        maintainAspectRatio: true,
+        maintainAspectRatio: false,
         plugins: {
           legend: {
             position: 'top',
@@ -57,29 +64,9 @@ export default {
           }
         }
       },
-      barChartData: {
-        labels: ['Mastitis', 'Brucelosis', 'Fiebre Aftosa'], // Cambia esto según tus datos
-        datasets: [
-          {
-            label: 'Enero',
-            data: [25, 15, 10], // Datos de frecuencia para cada enfermedad en el primer mes
-            backgroundColor: '#FF6384',
-          },
-          {
-            label: 'Febrero',
-            data: [30, 20, 15], // Datos de frecuencia para cada enfermedad en el segundo mes
-            backgroundColor: '#36A2EB',
-          },
-          {
-            label: 'Marzo',
-            data: [20, 25, 5], // Datos de frecuencia para cada enfermedad en el tercer mes
-            backgroundColor: '#FFCE56',
-          }
-        ]
-      },
       barChartOptions: {
         responsive: true,
-        maintainAspectRatio: true,
+        maintainAspectRatio: false,
         plugins: {
           legend: {
             position: 'top',
@@ -91,10 +78,10 @@ export default {
         },
         scales: {
           xAxes: [{
-            stacked: true // Habilitar apilamiento en el eje X
+            stacked: false
           }],
           yAxes: [{
-            stacked: true // Habilitar apilamiento en el eje Y
+            stacked: true
           }]
         }
       },
@@ -102,66 +89,106 @@ export default {
   },
 
   created() {
+    // Fetch notifications
     axios.get('https://my-json-server.typicode.com/Brays83/FarmGuard-Api-Fake/notifications')
         .then(response => {
           this.notifications = response.data;
         })
         .catch(error => console.error(error));
 
+    // Fetch animals and prepare chart data
     axios.get('https://my-json-server.typicode.com/Brays83/FarmGuard-Api-Fake/animals')
         .then(response => {
-          this.animalCount = response.data.length; // Contar los animales
-          this.totalAnimals = response.data.length; // Total de animales (puedes ajustar según tu lógica)
+          const animals = response.data;
+
+          // Count animals by species
+          const speciesCount = {};
+          animals.forEach(animal => {
+            if (speciesCount[animal.species]) {
+              speciesCount[animal.species]++;
+            } else {
+              speciesCount[animal.species] = 1;
+            }
+          });
+
+          // Prepare data for the pie chart
+          this.chartData.labels = Object.keys(speciesCount);
+          this.chartData.datasets[0].data = Object.values(speciesCount);
+
+          // Generate colors for each species dynamically
+          this.chartData.datasets[0].backgroundColor = this.chartData.labels.map(() => this.getRandomColor());
+        })
+        .catch(error => console.error(error));
+
+    // Fetch diseases and prepare bar chart data
+    axios.get('https://my-json-server.typicode.com/Brays83/FarmGuard-Api-Fake/diseases')
+        .then(response => {
+          const diseases = response.data;
+
+          // Prepare labels and datasets for the bar chart
+          this.barChartData.labels = Object.keys(diseases[0].frequency_by_month); // Get months from the first disease
+
+          // Create datasets for each disease
+          this.barChartData.datasets = diseases.map(disease => ({
+            label: disease.name,
+            data: Object.values(disease.frequency_by_month), // Get frequency values for each month
+            backgroundColor: this.getRandomColor(),
+          }));
         })
         .catch(error => console.error(error));
   },
+
+  methods: {
+    getRandomColor() {
+      const letters = '0123456789ABCDEF';
+      let color = '#';
+      for (let i = 0; i < 6; i++) {
+        color += letters[Math.floor(Math.random() * 16)];
+      }
+      return color;
+    }
+  }
 };
 </script>
 
 <style scoped>
-
-.graphics-group {
-  display: flex; /* Usar flexbox para organizar la disposición */
-  gap: 2rem;
-}
-
-.notification-list{
-  background-color: #ffffff;
-  padding: 20px;
-  border-radius: 10px;
+.notifications {
+  background-color: #76da88;
+  padding: 20px; /* Reduced padding for smaller screens */
 }
 
 .section-title {
-  margin: 0 50px 50px 50px;
-  padding: 20px 0 10px 0;
+  margin-bottom: 20px; /* Adjusted margins */
+  padding-bottom: 10px; /* Adjusted padding */
   border-bottom: 3px solid black;
 }
 
-h1 {
-  margin-top: 0;
-}
-
-.charts-container {
-  flex-basis: 80%;
-  display: flex;
-  gap: 2rem;
-
-}
-
-.notifications {
-  background-color: #77db89;
-  padding: 50px;
-}
-
-.pie-chart,
-.bar-chart {
-  width: 60%;
+.notification-list {
   background-color: #ffffff;
   padding: 20px;
   border-radius: 10px;
 }
 
+/* Custom styles for responsive charts */
+.pie-chart-container,
+.bar-chart-container {
+  width: calc(100% - 1%); /* Full width minus some margin */
+}
+
+.pie-chart-container {
+  min-height: 300px; /* Minimum height for pie chart */
+}
+
+.bar-chart-container {
+  min-height: 300px; /* Minimum height for bar chart */
+}
+
+.measures-pie, .measures-bar {
+  width: calc(100% - 2%);
+}
+
+/* Optional custom styles for cards if needed */
 .card {
-  margin-top: 20px; /* Espaciado entre gráficos */
+  margin-top: 10px; /* Reduced margin for smaller screens */
 }
 </style>

@@ -17,7 +17,7 @@ export class Animal {
         this.id_animal = id_animal;
         this.name = name;
         this.species = species;
-        this.vaccies = vaccies;
+        this.vaccines = vaccies;
         this.url_iot = url_iot;
         this.url_photo = url_photo;
         this.id_inventory = id_inventory;

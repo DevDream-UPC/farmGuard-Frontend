@@ -5,6 +5,10 @@ export class AnimalApiService {
         return http.get(`/animals`);
     }
 
+    putAnimal(resource){
+        return http.put(`/animals/${resource.id}`, resource);
+    }
+
     postAnimal(resource){
         return http.post(`/animals`,resource);
     }
