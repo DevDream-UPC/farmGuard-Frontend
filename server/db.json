@@ -305,47 +305,5 @@
         "July": 30
       }
     }
-  ],
-  "species": [
-    {
-      "id": "1",
-      "name": "Mamíferos"
-    },
-    {
-      "id": "2",
-      "name": "Aves"
-    },
-    {
-      "id": "3",
-      "name": "Reptiles"
-    },
-    {
-      "id": "4",
-      "name": "Anfibios"
-    },
-    {
-      "id": "5",
-      "name": "Peces"
-    },
-    {
-      "id": "6",
-      "name": "Insectos"
-    },
-    {
-      "id": "7",
-      "name": "Arácnidos"
-    },
-    {
-      "id": "8",
-      "name": "Moluscos"
-    },
-    {
-      "id": "9",
-      "name": "Crustáceos"
-    },
-    {
-      "id": "10",
-      "name": "Equinodermos"
-    }
   ]
 }

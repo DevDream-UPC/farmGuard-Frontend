@@ -21,21 +21,16 @@
             <label for="species">Especie</label>
             <select id="species" v-model="animal.species" class="p-inputtext">
               <option value="" disabled></option>
-              <option>Mamífero - Bovino</option>
-              <option>Mamífero - Porcino</option>
-              <option>Mamífero - Ovino</option>
-              <option>Mamífero - Caprino</option>
-              <option>Mamífero - Equino</option>
-              <option>Mamífero - Felino</option>
-              <option>Mamífero - Canino</option>
-              <option>Mamífero - Mustélido</option>
-              <option>Mamífero - Roedor</option>
-              <option>Mamífero - Lepórido</option>
+              <option>Mamíferos</option>
               <option>Aves</option>
-              <option>Peces</option>
               <option>Reptiles</option>
               <option>Anfibios</option>
+              <option>Peces</option>
               <option>Insectos</option>
+              <option>Arácnidos</option>
+              <option>Moluscos</option>
+              <option>Crustáceos</option>
+              <option>Equinodermos</option>
             </select>
             <span v-if="!animal.species && formSubmitted" class="error-message">Este campo es obligatorio.</span>
           </div>
@@ -107,7 +102,7 @@
             temperature: 0,
           };
   
-          const response = await fetch('http://localhost:3000/animals', {
+          const response = await fetch('https://my-json-server.typicode.com/Brays83/FarmGuard-Api-Fake/animals', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
@@ -186,7 +181,7 @@
   }
   
   .field label {
-    font-weight: regular;
+    font-weight: normal;
     margin-bottom: 0.5rem;
     color: #333;
   }

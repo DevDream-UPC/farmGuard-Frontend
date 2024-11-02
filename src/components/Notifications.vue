@@ -1,8 +1,12 @@
 <template>
-  <div class="notifications">
+  <div class="p-5">
     <h1 class="section-title">Inicio</h1>
-    <h1>Notificaciones</h1>
-    <div class="graphics-group p-fluid">
+  </div>
+
+  <div class="grid p-5 ">
+
+    <div class="h-auto p-fluid col-6">
+      <h1>Notificaciones</h1>
       <div class="notification-list">
         <NotificationCard
             v-for="notification in notifications"
@@ -10,13 +14,14 @@
             :notification="notification"
         />
       </div>
-      <div class="flex flex-wrap justify-content-center pt-5 gap-4">
-        <div class="card flex notification-list pie-chart-container">
-          <Chart class="measures-pie" type="pie" :data="chartData" :options="chartOptions" />
-        </div>
-        <div class="card flex notification-list bar-chart-container">
-          <Chart class="measures-bar" type="bar" :data="barChartData" :options="barChartOptions" />
-        </div>
+    </div>
+
+    <div class="flex flex-wrap justify-content-center pt-5 gap-4 col-6">
+      <div class="card flex notification-list pie-chart-container">
+        <Chart class="measures-pie" type="pie" :data="chartData" :options="chartOptions" />
+      </div>
+      <div class="card flex notification-list bar-chart-container">
+        <Chart class="measures-bar" type="bar" :data="barChartData" :options="barChartOptions" />
       </div>
     </div>
   </div>
@@ -92,7 +97,7 @@ export default {
         .catch(error => console.error(error));
 
     // Fetch animals and prepare chart data
-    axios.get('http://localhost:3000/animals')
+    axios.get('https://my-json-server.typicode.com/Brays83/FarmGuard-Api-Fake/animals')
         .then(response => {
           const animals = response.data;
 

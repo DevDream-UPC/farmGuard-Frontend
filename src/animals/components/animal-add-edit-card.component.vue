@@ -27,7 +27,7 @@
     },
     created() {
       this.toast = useToast();
-      this.getSpecies()
+      this.addSpecies()
     },
     methods:{
       changePag(){
@@ -44,18 +44,18 @@
             life:3000})
         })
       },
-      buildSpecies(species){
-        return species.map(x =>{
-          return x.name
-        })
+      addSpecies(){
+        this.species.push("Mamíferos");
+        this.species.push("Aves");
+        this.species.push("Reptiles");
+        this.species.push("Anfibios");
+        this.species.push("Peces");
+        this.species.push("Insectos");
+        this.species.push("Arácnidos");
+        this.species.push("Moluscos");
+        this.species.push("Crustáceos");
+        this.species.push("Equinodermos");
 
-      },
-      getSpecies(){
-        this.specieApi.getSpecies().then(response => {
-          console.log(response)
-          this.species = this.buildSpecies(response.data)
-          console.log("Arreglo de especies",this.species)
-        })
       }
 
     }
