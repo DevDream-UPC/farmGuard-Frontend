@@ -122,7 +122,7 @@
       },
   
       cancel() {
-        this.$router.push({ path: '/Animals' });
+        this.$router.push({ path: '/home/Animals' });
       },
     },
   };

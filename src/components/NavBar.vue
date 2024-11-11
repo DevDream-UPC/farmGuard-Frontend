@@ -35,19 +35,23 @@
 
 <script>
 import axios from 'axios';
+import {Profile} from "../profile/model/profile.js";
+import {ProfileService} from "../profile/services/profile.service.js";
 
 
 export default {
   components: {},
   data() {
     return {
-      profile: `{this.profile.urlPhoto}`,
+
+      profile: Profile,
+      profileService :new ProfileService(),
       items: [
-        {label:"Inicio", url:'/' },
-        {label:"Animales", url:'/Animals' },
-        {label:"Alertas", url:'/Alerts' },
-        {label:"Vacunas", url:'/Vaccines' },
-        {label:"Recomendaciones", url:'/recomend' }
+        {label:"Inicio", url:'/home/mi-app' },
+        {label:"Animales", url:'/home/Animals' },
+        {label:"Alertas", url:'/home/Alerts' },
+        {label:"Vacunas", url:'/home/Vaccines' },
+        {label:"Recomendaciones", url:'/home/recomend' }
 
       ]
     };
@@ -58,11 +62,13 @@ export default {
   },
   methods: {
     getProfile() {
-      axios.get('http://localhost:3000/profiles')
-          .then(response => {
-            this.profile = response.data;
-          })
-          .catch(error => console.error(error));
+
+      let user =JSON.parse(localStorage.getItem(`user`));
+
+      this.profileService.getProfileById(user.profileId).then(response => {
+        this.profile = response.data;
+      })
+
     },
     // Metodo para redirigir al componente UserProfile
     goToProfile() {

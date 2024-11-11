@@ -66,7 +66,7 @@ name: "vaccine-list-animal",
       </template>
       <template #footer>
         <div class="flex gap-3 justify-content-center p-2">
-          <router-link to="/animals">
+          <router-link to="/home/animals">
             <pv-button severity="danger" >Cancelar</pv-button>
           </router-link>
 
