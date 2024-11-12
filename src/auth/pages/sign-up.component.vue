@@ -21,7 +21,7 @@ export default {
 </script>
 
 <template>
-  <h1>{{userSignUp}}</h1>
+
   <div style="display: flex; height: 100vh; justify-content: center; align-items: center;">
 
     <div class="col-12 lg:col-6 xl:col-6" style="background-color: #F3F3F3; height: 100%; display: flex; justify-content: center; align-items: center;">
