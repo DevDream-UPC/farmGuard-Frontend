@@ -15,48 +15,32 @@ export default {
     }
   },
   created() {
-    this.getAnimalByIdAnimal(this.$route.params.id)
+    this.getAnimalByIdAnimal(this.$route.params.id);
   },
   methods:{
-    buildVaccineFromResource(vaccines){
-      if(vaccines){
-        return vaccines.map(vaccine =>{
-          return new Vaccine(
-              vaccine.id,
-              vaccine.name,
-              vaccine.description,
-              vaccine.date_expiration
-          )
-        })
-      }else{
-        return new Vaccine();
-      }
-
-    },
     buildAnimalFromResponseData(animal){
-      return new Animal (
+      return new Animal(
           animal.id,
-          animal.id_animal,
+          animal.idAnimal,
           animal.name,
-          animal.species,
-          this.buildVaccineFromResource(animal.vaccines),
-          animal.url_iot,
-          animal.url_photo,
-          animal.id_inventory,
+          animal.specie,
+          animal.urlIot,
+          animal.urlPhoto,
+          animal.inventoryId,
           animal.location,
-          animal.hear_rate,
-          animal.temperature,
-          animal.years
+          animal.hearRate,
+          animal.temperature
       )
     },
 
     getAnimalByIdAnimal(id_animal){
       this.animalsApi.getById(id_animal)
           .then(response =>{
-            console.log("Datos traidos",response.data)
-            const animalData = response.data[0];
+            console.log(`IdAnimal: ${this.$route.params.id}`);
+            console.log("Datos traidos page add-edit",response.data)
+            const animalData = response.data;
             this.animal = this.buildAnimalFromResponseData(animalData)
-            console.log("Dato transformado",this.animal)
+            console.log("Dato transformado page add-edit",this.animal)
           })
     }
   }

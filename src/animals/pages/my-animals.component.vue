@@ -5,7 +5,7 @@ import AnimalsList from "../components/animals-list.component.vue";
 import {Vaccine} from "../../vaccines/model/vaccine.entity.js";
 
 
-
+import {User} from "../../auth/model/user.entity.js";
 export default {
   name: "my-animals",
   components:{AnimalsList},
@@ -13,7 +13,8 @@ export default {
   data(){
     return{
       animals: [],
-      animalsApi: new AnimalApiService()
+      animalsApi: new AnimalApiService(),
+      user: User
 
     }
   },
@@ -21,43 +22,29 @@ export default {
     this.getAllAnimals();
   },
   methods:{
-    buildVaccineFromResource(vaccines){
-      if(vaccines){
-        return vaccines.map(vaccine =>{
-          return new Vaccine(
-              vaccine.id,
-              vaccine.name,
-              vaccine.description,
-              vaccine.date_expiration
-          )
-        })
-      }else{
-        return new Vaccine();
-      }
 
-    },
     buildAnimalFromResponseData(animals){
       return animals.map(animal =>{
         return new Animal(
             animal.id,
-            animal.id_animal,
+            animal.idAnimal,
             animal.name,
-            animal.species,
-            this.buildVaccineFromResource(animal.vaccines),
-            animal.url_iot,
-            animal.url_photo,
-            animal.id_inventory,
+            animal.specie,
+            animal.urlIot,
+            animal.urlPhoto,
+            animal.inventoryId,
             animal.location,
-            animal.hear_rate,
-            animal.temperature,
-            animal.years
+            animal.hearRate,
+            animal.temperature
         )
       })
     },
 
     getAllAnimals() {
+      let user =JSON.parse(localStorage.getItem(`user`));
+
       this.animalsApi
-        .getAll()
+        .getAll(user.inventoryId)
         .then((response) => {
           console.log("llamando al api", response.data);
           let arrayAnimals = response.data;
@@ -70,7 +57,7 @@ export default {
     },
 
     goToAddAnimal() {
-      this.$router.push("/add-animal");
+      this.$router.push("/home/add-animal");
     },
   },
 };

@@ -1,14 +1,20 @@
 <template>
-  <div :class="['notification-card', notification.state.toLowerCase()]">
-    <h4>ID: {{ notification.id }}</h4>
-    <p>{{ notification.description }}</p>
+  <div class="p-2">
+    <div :class="['notification-card', notification.state.toLowerCase()] ">
+      <h4>ID: {{ notification.id }}</h4>
+      <h4>Title: {{notification.title}}</h4>
+      <p>{{ notification.description }}</p>
+    </div>
+
   </div>
+
 </template>
 
 <script>
+import {Notification} from "../model/notification.entity.js";
 export default {
   props: {
-    notification: Object
+    notification: Notification
   }
 };
 </script>
