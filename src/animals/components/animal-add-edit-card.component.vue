@@ -42,6 +42,17 @@
             animal.temperature
         )
       },
+      deleteAnimal(idAnimal){
+        this.animalsApi.deleteAnimal(idAnimal).then(response =>{
+          console.log(response);
+
+          this.toast.add({ severity:"warn",
+            summary:"Mensaje de Eliminacion",
+            detail:`Eliminacion de ${this.animal.name} correctamente`,
+            life:3000})
+        })
+
+      },
 
       putAnimalById(animal,idSerialAnimal){
         const resourceAnimal = this.buildEntityToResource(animal);
@@ -82,7 +93,14 @@
   <div class="flex justify-content-center align-content-center mt-4 p-4 " >
     <pv-card class="h-auto">
       <template #title>
-        <h1>{{animal.name}}</h1>
+        <div class="flex gap-2">
+          <h1>{{animal.name}}</h1>
+          <router-link to="/home/animals">
+            <pv-button severity="danger" @click="deleteAnimal(animal.idAnimal)" > <i class="pi pi-trash"/></pv-button>
+          </router-link>
+
+        </div>
+
 
       </template >
 

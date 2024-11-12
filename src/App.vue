@@ -1,13 +1,10 @@
 <template>
-  <div id="app">
+  <router-view></router-view><!-- Aquí se renderizarán los componentes según la ruta -->
 
-    <router-view></router-view><!-- Aquí se renderizarán los componentes según la ruta -->
-
-  </div>
 </template>
 
 <script>
-import NavBar from "./components/NavBar.vue";
+
 
 export default {
   name: 'App',
@@ -16,13 +13,10 @@ export default {
 </script>
 
 <style scoped>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  margin: 0;
-  padding: 0;
-}
+
 
 body {
+  font-family: Avenir, Helvetica, Arial, sans-serif;
   margin: 0;
   padding: 0;
 }

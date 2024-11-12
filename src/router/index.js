@@ -2,7 +2,7 @@ import {createRouter, createWebHistory} from "vue-router"
 import MyAnimalsComponent from "../animals/pages/my-animals.component.vue";
 import AddEditAnimalComponent from "../animals/pages/add-edit-animal.component.vue";
 import Notifications from '../components/Notifications.vue'; // Asegúrate de que la ruta sea correcta
-import UserProfile from '../components/UserProfile.vue'; // Asegúrate de que la ruta sea correcta
+import UserProfile from '../profile/pages/UserProfile.vue'; // Asegúrate de que la ruta sea correcta
 import AddAnimal from "../animals/pages/add-animal.component.vue";
 import ViewVaccinesComponent from "../vaccines/pages/view-vaccines.component.vue";
 import AddVaccineAnimalComponent from "../vaccines/pages/Add-Vaccine-Animal.component.vue";
@@ -12,6 +12,7 @@ import LayoutApp from "../animals/pages/layout.component.vue";
 import SignInComponent from "../auth/pages/sign-in.component.vue";
 import SignUpComponent from "../auth/pages/sign-up.component.vue";
 import PageNotFound from "../components/PageNotFound.vue";
+import ViewNotificationsComponent from "../notifications/pages/view-notifications.component.vue";
 
 const router = createRouter({
     history: createWebHistory(),
@@ -57,7 +58,7 @@ const router = createRouter({
                     name:`addOrEdit`
                 },
                 {
-                    path: `/:id/vaccines`,
+                    path: `/vaccines/:id`,
                     component:ViewVaccinesComponent,
                     name:'ViewVaccines',
                     meta:{title:`ViewVaccines`}
@@ -70,10 +71,18 @@ const router = createRouter({
                 },
                 {
                     path: 'mi-app',
-                    name: 'Notifications',
+                    name: 'Home',
                     component: Notifications,
+                    meta: { title: 'Home' }
+                },
+                {
+                    path: 'notifications',
+                    name: 'Notifications',
+                    component: ViewNotificationsComponent,
                     meta: { title: 'Notificaciones' }
                 },
+
+
 
             ]
         },

@@ -9,12 +9,12 @@ export class AnimalApiService {
         return http.put(`/animals/${idSerialAnimal}`, resource);
     }
 
-    postAnimal(resource){
-        return http.post(`/animals`,resource);
+    postAnimal(resource,idInventory){
+        return http.post(`/animals/${idInventory}`,resource);
     }
 
-    deleteAnimal(id){
-
+    deleteAnimal(idSerialAnimal){
+        return http.delete(`/animals/${idSerialAnimal}`);
     }
 
     getById(idSerialAnimal){

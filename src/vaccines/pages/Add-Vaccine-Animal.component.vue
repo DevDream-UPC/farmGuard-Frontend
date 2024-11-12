@@ -4,6 +4,9 @@
 
 
 import {Vaccine} from "../model/vaccine.entity.js";
+import {ResourceVaccine} from "../model/resourceVaccine.entity.js";
+import {VaccineApiService} from "../services/vaccine-api.service.js";
+import {useToast} from "primevue/usetoast";
 
 
 export default {
@@ -11,14 +14,29 @@ export default {
   components: {},
   data(){
     return{
-      vaccine: new Vaccine()
+      vaccine: new ResourceVaccine(),
+      vaccineService: new VaccineApiService()
+
     }
+  },
+  created() {
+    //Inicio las notificacione
+    this.toast = useToast();
   },
   methods:{
     putVaccine(vaccine){
       /*Convertimos a fecha en iso*/
       this.vaccine.date_expiration = this.converDateToFormatIso(vaccine.date_expiration)
+      let idAnimal = this.$route.params.id;
       console.log("Enviando datos:",vaccine)
+      console.log("Enviando idAnimal:",idAnimal)
+
+      this.vaccineService.putVaccine(vaccine,idAnimal);
+
+      this.toast.add({ severity:"success",
+        summary:"Mensaje de Confirmacion",
+        detail:`Vacuna agregada a ${idAnimal} correctamente`,
+        life:3000})
 
     },
     converDateToFormatIso(){
@@ -66,7 +84,11 @@ export default {
             <pv-button severity="danger" >Cancelar</pv-button>
           </router-link>
 
-          <pv-button severity="success" @click="putVaccine(vaccine)" >Agregar</pv-button>
+
+          <router-link to="/home/animals">
+            <pv-button severity="success" @click="putVaccine(vaccine)" >Agregar</pv-button>
+          </router-link>
+
 
 
         </div>

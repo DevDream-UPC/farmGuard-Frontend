@@ -42,9 +42,9 @@ name: "vaccine-list-animal",
   <div class="p-5 h-auto">
     <pv-card style="background-color: white; color: black">
       <template #title>
-        <div class="flex">
+        <div class="flex gap-2">
           <h1 class="mb-0 mt-0">Vacunas de </h1>
-          <h1 style="color: #4ADE80; margin-bottom: 0; margin-top: 0"> {{this.name}}</h1>
+          <h1 style="color: #4ADE80; margin-bottom: 0; margin-top: 0">{{this.name}}</h1>
         </div>
         <hr>
 

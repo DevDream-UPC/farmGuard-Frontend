@@ -1,36 +1,53 @@
 <template>
-  <div class="p-5">
-    <h1 class="section-title">Inicio</h1>
-  </div>
-
-  <div class="grid p-5 ">
-
-    <div class="h-auto p-fluid col-6">
-      <h1>Notificaciones</h1>
-      <div class="notification-list">
-        <NotificationCard
-            v-for="notification in notifications"
-            :key="notification.id"
-            :notification="notification"
-        />
-      </div>
+  <div class="p-5" style="background-color: #4ADE80; ">
+    <div >
+      <h1 class="font-bold text-black-alpha-90 m-0  xl:text-6xl lg:text-6xl  md:text-6xl  sm:text-3xl ">Inicio</h1>
+      <hr>
     </div>
 
-    <div class="flex flex-wrap justify-content-center pt-5 gap-4 col-6">
-      <div class="card flex notification-list pie-chart-container">
-        <Chart class="measures-pie" type="pie" :data="chartData" :options="chartOptions" />
+    <div class="grid">
+      <div class="col-12 md:col-6 lg:col-6">
+        <div class="home-card p-4">
+          <Chart  type="pie" :data="chartData" :options="chartOptions" width="100%" height="400" />
+        </div>
+
       </div>
-      <div class="card flex notification-list bar-chart-container">
-        <Chart class="measures-bar" type="bar" :data="barChartData" :options="barChartOptions" />
+
+      <div class=" col-12 md:col-6 lg:col-6 ">
+        <div class="home-card p-4">
+          <Chart type="bar" :data="barChartData" :options="barChartOptions" width="100%" height="400" />
+        </div>
       </div>
+
+      <div class="home-card col-12 ">
+        <div class="flex justify-content-center p-2">
+          <h1 class="font-bold text-black-alpha-90 m-0  xl:text-2xl lg:text-2xl  md:text-2xl  sm:text-1xl ">Animales Registrados</h1>
+        </div>
+        <pv-progress-bar :value="numberAnimal"></pv-progress-bar>
+        <div class="flex justify-content-center">
+          <p style="color: black">{{numberAnimal}}</p>
+        </div>
+
+      </div>
+
+
+
+
+
     </div>
+
+
   </div>
+
 </template>
 
 <script>
 import Chart from 'primevue/chart';
-import NotificationCard from './NotificationCard.vue';
+import NotificationCard from '../notifications/components/NotificationCard.vue';
 import axios from 'axios';
+import AnimalsList from "../animals/components/animals-list.component.vue";
+import {AnimalApiService} from "../animals/services/animal-api.service.js";
+
 
 export default {
   components: { NotificationCard, Chart },
@@ -38,6 +55,8 @@ export default {
   data() {
     return {
       notifications: [],
+      animalService: new AnimalApiService(),
+      numberAnimal: 0,
       chartData: {
         labels: [],
         datasets: [
@@ -89,6 +108,7 @@ export default {
   },
 
   created() {
+    let user = JSON.parse(localStorage.getItem(`user`));
     // Fetch notifications
     axios.get('https://my-json-server.typicode.com/Brays83/FarmGuard-Api-Fake/notifications')
         .then(response => {
@@ -97,28 +117,25 @@ export default {
         .catch(error => console.error(error));
 
     // Fetch animals and prepare chart data
-    axios.get('https://my-json-server.typicode.com/Brays83/FarmGuard-Api-Fake/animals')
-        .then(response => {
-          const animals = response.data;
+    this.animalService.getAll(user.inventoryId).then(response => {
+      const animals = response.data;
+      this.numberAnimal = animals.length;
+      const speciesCount = {};
+      animals.forEach(animal => {
+        if (speciesCount[animal.specie]) {
+          speciesCount[animal.specie]++;
+        } else {
+          speciesCount[animal.specie] = 1;
+        }
+      });
 
-          // Count animals by species
-          const speciesCount = {};
-          animals.forEach(animal => {
-            if (speciesCount[animal.species]) {
-              speciesCount[animal.species]++;
-            } else {
-              speciesCount[animal.species] = 1;
-            }
-          });
+      // Prepare data for the pie chart
+      this.chartData.labels = Object.keys(speciesCount);
+      this.chartData.datasets[0].data = Object.values(speciesCount);
 
-          // Prepare data for the pie chart
-          this.chartData.labels = Object.keys(speciesCount);
-          this.chartData.datasets[0].data = Object.values(speciesCount);
-
-          // Generate colors for each species dynamically
-          this.chartData.datasets[0].backgroundColor = this.chartData.labels.map(() => this.getRandomColor());
-        })
-        .catch(error => console.error(error));
+      // Generate colors for each species dynamically
+      this.chartData.datasets[0].backgroundColor = this.chartData.labels.map(() => this.getRandomColor());
+    })
 
     // Fetch diseases and prepare bar chart data
     axios.get('https://my-json-server.typicode.com/Brays83/FarmGuard-Api-Fake/diseases')
@@ -152,43 +169,14 @@ export default {
 </script>
 
 <style scoped>
-.notifications {
-  background-color: #76da88;
-  padding: 20px; /* Reduced padding for smaller screens */
-}
 
-.section-title {
-  margin-bottom: 20px; /* Adjusted margins */
-  padding-bottom: 10px; /* Adjusted padding */
-  border-bottom: 3px solid black;
-}
-
-.notification-list {
+.home-card {
   background-color: #ffffff;
-  padding: 20px;
+
   border-radius: 10px;
 }
 
-/* Custom styles for responsive charts */
-.pie-chart-container,
-.bar-chart-container {
-  width: calc(100% - 1%); /* Full width minus some margin */
-}
-
-.pie-chart-container {
-  min-height: 300px; /* Minimum height for pie chart */
-}
-
-.bar-chart-container {
-  min-height: 300px; /* Minimum height for bar chart */
-}
-
-.measures-pie, .measures-bar {
-  width: calc(100% - 2%);
-}
-
-/* Optional custom styles for cards if needed */
-.card {
-  margin-top: 10px; /* Reduced margin for smaller screens */
+hr {
+  border: 2px solid black;
 }
 </style>

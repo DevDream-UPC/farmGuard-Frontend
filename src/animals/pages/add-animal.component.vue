@@ -1,26 +1,21 @@
 <template>
+
     <div class="add-animal-container">
       <h2 class="title">🐰 Agregar un animal</h2>
       <hr class="separator" />
-  
-      <div class="form-grid">
-        <div class="left-column">
+
+      <form class="grid m-4">
+        <div class="flex flex-column gap-2  xl:col-6 sm:col-6 col-12  ">
           <div class="field">
             <label for="name">Nombre</label>
             <input type="text" id="name" v-model="animal.name" class="p-inputtext" />
             <span v-if="!animal.name && formSubmitted" class="error-message">Este campo es obligatorio.</span>
           </div>
-  
-          <div class="field">
-            <label for="age">Edad</label>
-            <input type="number" id="age" v-model="animal.age" class="p-inputtext" />
-            <span v-if="!animal.age && formSubmitted" class="error-message">Este campo es obligatorio.</span>
-          </div>
-  
+
+
           <div class="field">
             <label for="species">Especie</label>
-            <select id="species" v-model="animal.species" class="p-inputtext">
-              <option value="" disabled></option>
+            <select id="species" v-model="animal.specie" class="p-inputtext">
               <option>Mamíferos</option>
               <option>Aves</option>
               <option>Reptiles</option>
@@ -32,93 +27,87 @@
               <option>Crustáceos</option>
               <option>Equinodermos</option>
             </select>
-            <span v-if="!animal.species && formSubmitted" class="error-message">Este campo es obligatorio.</span>
+            <span v-if="!animal.specie && formSubmitted" class="error-message">Este campo es obligatorio.</span>
           </div>
-  
+
           <div class="field">
             <label for="sensorUrl">URL del sensor</label>
-            <input type="text" id="sensorUrl" v-model="animal.sensorUrl" class="p-inputtext" />
-            <span v-if="!animal.sensorUrl && formSubmitted" class="error-message">Este campo es obligatorio.</span>
+            <input type="text" id="sensorUrl" v-model="animal.urlIot" class="p-inputtext" />
+            <span v-if="!animal.urlIot && formSubmitted" class="error-message">Este campo es obligatorio.</span>
           </div>
+
+          <div class="field">
+            <label for="location">Location</label>
+            <input type="text" id="location" v-model="animal.location" class="p-inputtext" />
+            <span v-if="!animal.location && formSubmitted" class="error-message">Este campo es obligatorio.</span>
+          </div>
+
         </div>
-  
-        <div class="right-column">
+        <div class="flex flex-column gap-2  xl:col-6 sm:col-6 col-12  ">
+
           <div class="field image-field">
             <label for="imageUrl">URL de imagen</label>
-            <input type="text" id="imageUrl" v-model="animal.imageUrl" @input="updateImagePreview" class="p-inputtext" />
-            <span v-if="!animal.imageUrl && formSubmitted" class="error-message">Este campo es obligatorio.</span>
-            <div class="image-preview-container">
-              <div class="image-preview">
-                <img v-if="animal.imageUrl" :src="animal.imageUrl" alt="Animal Preview" class="animal-image-preview" />
-              </div>
+            <input type="text" id="imageUrl" v-model="animal.urlPhoto" @input="updateImagePreview" class="p-inputtext" />
+            <span v-if="!animal.urlPhoto && formSubmitted" class="error-message">Este campo es obligatorio.</span>
+
+            <div class="flex justify-content-center p-2 mt-4">
+              <img v-if="animal.urlPhoto" :src="animal.urlPhoto" alt="Animal Preview" class="w-full border-round-xl " />
             </div>
-            <div v-if="animal.imageUrl" class="image-space"></div>
+            <div v-if="animal.urlPhoto" class="image-space"></div>
           </div>
+
         </div>
-      </div>
-  
-      <div class="button-group">
-        <button class="p-button-success accept-button" @click="submitAnimal">Aceptar</button>
-        <button class="p-button-danger cancel-button" @click="cancel">Cancelar</button>
-      </div>
+
+        <div class="button-group ">
+          <pv-button severity="danger" @click="cancel">Cancelar</pv-button>
+          <pv-button severity="success" @click="submitAnimal" >Aceptar</pv-button>
+        </div>
+
+      </form>
+
     </div>
   </template>
   
   <script>
+  import {ResourceAnimal} from "../model/resourceAnimal.Entity.js";
+  import {AnimalApiService} from "../services/animal-api.service.js";
+  import {useToast} from "primevue/usetoast";
+
+
   export default {
+    components: {},
     data() {
       return {
-        animal: {
-          name: '',
-          age: '',
-          species: '',
-          sensorUrl: '',
-          imageUrl: '',
-        },
+        animal: new ResourceAnimal(),
+        toast: null,
         formSubmitted: false,
+        animalService: new AnimalApiService(),
       };
+    },
+    created() {
+      this.toast = useToast();
     },
     methods: {
       updateImagePreview() {},
   
       async submitAnimal() {
+        let user = JSON.parse(localStorage.getItem(`user`));
+
         this.formSubmitted = true;
-        if (!this.animal.name || !this.animal.age || !this.animal.species || !this.animal.sensorUrl || !this.animal.imageUrl) {
+
+        if (!this.animal.name  || !this.animal.specie || !this.animal.urlIot || !this.animal.urlPhoto) {
           return;
         }
-  
-        try {
-          const newAnimal = {
-            id_animal: crypto.randomUUID(),
-            name: this.animal.name,
-            species: this.animal.species,
-            years: this.animal.age,
-            url_iot: this.animal.sensorUrl,
-            url_photo: this.animal.imageUrl,
-            vaccines: 0,
-            id_inventory: 0,
-            location: 0,
-            hear_rate: 0,
-            temperature: 0,
-          };
-  
-          const response = await fetch('https://my-json-server.typicode.com/Brays83/FarmGuard-Api-Fake/animals', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(newAnimal),
-          });
-  
-          if (!response.ok) {
-            throw new Error('Error al agregar el animal');
-          }
-  
-          console.log('Animal agregado exitosamente:', newAnimal);
-          this.$router.push({ path: '/Animals' });
-        } catch (error) {
-          console.error('Error al enviar el formulario:', error);
-        }
+
+        this.animalService.postAnimal(this.animal,user.inventoryId).then(response =>{
+          this.toast.add({ severity:"success",
+            summary:"Mensaje de Confirmacion",
+            detail:`Creacion de ${animal.name} correctamente`,
+            life:3000})
+        })
+
+        this.$router.push({ path: '/home/Animals' });
+
       },
   
       cancel() {

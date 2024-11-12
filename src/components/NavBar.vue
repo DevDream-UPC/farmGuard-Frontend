@@ -21,9 +21,12 @@
       <div class="flex align-items-center">
         <!-- Aquí añadimos el @click para redirigir a UserProfile -->
         <img :src="profile.urlPhoto" class="profile-photo" alt="User Photo" @click="goToProfile" />
-        <button style="background: none; border: none; cursor: pointer;" @click="goToProfile">
-          <i class="pi pi-sign-out" style="font-size:30px"/>
-        </button>
+        <router-link to="/auth/sign-in">
+          <button style="background: none; border: none; cursor: pointer;" @click="logOut">
+            <i class="pi pi-sign-out" style="font-size:30px"/>
+          </button>
+        </router-link>
+
 
       </div>
 
@@ -37,6 +40,7 @@
 import axios from 'axios';
 import {Profile} from "../profile/model/profile.js";
 import {ProfileService} from "../profile/services/profile.service.js";
+import {AuthService} from "../auth/services/authService.js";
 
 
 export default {
@@ -46,10 +50,11 @@ export default {
 
       profile: Profile,
       profileService :new ProfileService(),
+      authService: new AuthService(),
       items: [
         {label:"Inicio", url:'/home/mi-app' },
         {label:"Animales", url:'/home/Animals' },
-        {label:"Alertas", url:'/home/Alerts' },
+        {label:"Notificaciones", url:'/home/notifications' },
         {label:"Vacunas", url:'/home/Vaccines' },
         {label:"Recomendaciones", url:'/home/recomend' }
 
@@ -61,9 +66,17 @@ export default {
     this.getProfile();
   },
   methods: {
+
+    logOut(){
+
+      this.authService.logOut();
+      window.location.reload()
+    },
+
+
     getProfile() {
 
-      let user =JSON.parse(localStorage.getItem(`user`));
+      let user = JSON.parse(localStorage.getItem(`user`));
 
       this.profileService.getProfileById(user.profileId).then(response => {
         this.profile = response.data;
