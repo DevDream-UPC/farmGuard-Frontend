@@ -11,7 +11,7 @@ export default {
   methods:{
     changeToPage(animal){
       this.$router.push(
-          { path: `/${animal.id_animal}/add-edit-animal` ,
+          { path: `/${animal.idAnimal}/add-edit-animal` ,
             params: {animal}
           });
     }
@@ -22,12 +22,12 @@ export default {
 <template>
   <pv-card class="m-2" >
     <template #title><h1>{{animal.name}}</h1></template>
-    <template #subtitle><h2>{{animal.species}}</h2></template>
+    <template #subtitle><h2>{{animal.specie}}</h2></template>
     <template #content>
       <div class="flex align-items-center justify-content-center p-2">
 
-        <router-link :to="{name:'addOrEdit',params:{id:animal.id_animal}}">
-          <img :src="animal.url_photo" class="w-12 h-12 border-round-xl cursor-pointer" >
+        <router-link :to="{name:'addOrEdit',params:{id:animal.idAnimal}}">
+          <img :src="animal.urlPhoto" class="w-12 h-12 border-round-xl cursor-pointer" >
         </router-link>
 
 
@@ -39,11 +39,7 @@ export default {
         </div>
 
         <div class="flex">
-          <h3>Edad: </h3> <p>{{animal.years}} años</p>
-        </div>
-
-        <div class="flex">
-          <h3>Ritmo Cardiaco: </h3> <p>{{animal.hear_rate}} rpm</p>
+          <h3>Ritmo Cardiaco: </h3> <p>{{animal.hearRate}} rpm</p>
         </div>
 
         <div class="flex">

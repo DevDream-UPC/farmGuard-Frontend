@@ -6,6 +6,7 @@
   import {SpecieApiService} from "../services/specie-api.service.js";
   import { useToast } from "primevue/usetoast";
   import ToastService from "primevue/toastservice";
+  import {ResourceAnimal} from "../model/resourceAnimal.Entity.js";
 
 
 
@@ -30,13 +31,37 @@
       this.addSpecies()
     },
     methods:{
-      changePag(){
+      buildEntityToResource(animal){
+        return new ResourceAnimal(
+            animal.name,
+            animal.specie,
+            animal.urlIot,
+            animal.urlPhoto,
+            animal.location,
+            animal.hearRate,
+            animal.temperature
+        )
+      },
+      deleteAnimal(idAnimal){
+        this.animalsApi.deleteAnimal(idAnimal).then(response =>{
+          console.log(response);
+
+          this.toast.add({ severity:"warn",
+            summary:"Mensaje de Eliminacion",
+            detail:`Eliminacion de ${this.animal.name} correctamente`,
+            life:3000})
+        })
 
       },
 
-      putAnimalById(animal){
-        this.animalsApi.putAnimal(animal).then(response => {
-          console.log(response)
+      putAnimalById(animal,idSerialAnimal){
+        const resourceAnimal = this.buildEntityToResource(animal);
+        console.log(`Recurso: ${resourceAnimal}`)
+        this.animalsApi.putAnimal(resourceAnimal,idSerialAnimal).then(response => {
+
+          console.log(`Actualizar: ${response}`)
+
+
           /*Inicia mensaje de confirmacion*/
           this.toast.add({ severity:"success",
             summary:"Mensaje de Confirmacion",
@@ -68,7 +93,14 @@
   <div class="flex justify-content-center align-content-center mt-4 p-4 " >
     <pv-card class="h-auto">
       <template #title>
-        <h1>{{animal.name}}</h1>
+        <div class="flex gap-2">
+          <h1>{{animal.name}}</h1>
+          <router-link to="/home/animals">
+            <pv-button severity="danger" @click="deleteAnimal(animal.idAnimal)" > <i class="pi pi-trash"/></pv-button>
+          </router-link>
+
+        </div>
+
 
       </template >
 
@@ -82,20 +114,16 @@
               <pv-input-tex v-model="animal.name"  />
             </div>
 
-            <div class="flex flex-column">
-              <label for="year">Edad</label>
-              <pv-input-num v-model="animal.years"  />
-            </div>
 
             <div class="flex flex-column">
               <label for="specie">Especie</label>
-              <pv-select v-model="animal.species" :options="species"  placeholder="Selecciona la especie"></pv-select>
+              <pv-select v-model="animal.specie" :options="species"  placeholder="Selecciona la especie"></pv-select>
 
             </div>
 
             <div class="flex flex-column">
               <label for="hear_rate">Ritmo Cardiaco</label>
-              <pv-input-num v-model="animal.hear_rate"  />
+              <pv-input-num v-model="animal.hearRate"  />
             </div>
 
             <div class="flex flex-column">
@@ -110,29 +138,29 @@
 
             <div class="flex flex-column">
               <label for="url_iot">Url Iot</label>
-              <pv-input-tex v-model.trim="animal.url_iot"  />
+              <pv-input-tex v-model.trim="animal.urlIot"  />
             </div>
 
           </div>
           <div class=" flex flex-column gap-2 xl:col-6 sm:col-6 col-12">
             <div class="flex flex-column sm:mt-2">
               <label for="id_animal">Id Animal</label>
-              <pv-input-tex v-model.trim="animal.id_animal" disabled />
+              <pv-input-tex v-model.trim="animal.idAnimal" disabled />
             </div>
             <div class="flex justify-content-center p-2">
-              <img :src="animal.url_photo" class="w-8 border-round-xl">
+              <img :src="animal.urlPhoto" class="w-8 border-round-xl">
             </div>
 
             <div class="flex flex-column">
               <label for="url_photo">Url de Imagen</label>
-              <pv-input-tex v-model.trim="animal.url_photo" />
+              <pv-input-tex v-model.trim="animal.urlPhoto" />
 
             </div>
 
             <!--Boton a pagina de vacunas -->
             <div class="flex justify-content-center">
 
-              <router-link :to="{name:'ViewVaccines',params:{id:animal.id_animal}}">
+              <router-link :to="{name:'ViewVaccines',params:{id:animal.idAnimal}}">
                 <pv-button> <i class="pi pi-receipt"/> Vacunas</pv-button>
               </router-link>
             </div>
@@ -143,13 +171,17 @@
         </div>
 
         <div class="flex gap-3 justify-content-end p-2">
-          <router-link to="/animals">
+          <router-link to="/home/animals">
             <pv-button severity="danger" >Cancelar</pv-button>
+          </router-link>
+
+          <router-link to="/home/animals">
+            <pv-button severity="success" @click="putAnimalById(animal,animal.idAnimal)" >Actualizar</pv-button>
           </router-link>
 
 
 
-          <pv-button severity="success" @click="putAnimalById(animal)" >Actualizar</pv-button>
+
         </div>
 
       </template>

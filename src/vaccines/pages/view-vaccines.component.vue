@@ -11,6 +11,7 @@ name: "view-vaccines",
   return {
     vacciness:[],
     animalsApiService: new AnimalApiService(),
+    vaccineService: new VaccineApiService(),
     nameAnimal:'',
     idAnimal:'',
 
@@ -26,19 +27,26 @@ name: "view-vaccines",
             vaccine.id,
             vaccine.name,
             vaccine.description,
-            vaccine.date_expiration
+            vaccine.date
         )
       })
     },
     getVaccinesOfAnimalById(id){
-      this.animalsApiService.getById(id).then(response =>{
-        const vaccinesData = response.data[0].vaccines;
-        this.nameAnimal = response.data[0].name;
-        this.idAnimal = response.data[0].id_animal;
-        console.log("Arreglo obtenido",vaccinesData)
-        this.vacciness = this.buildVaccineFromResponseData(vaccinesData);
-        console.log("Arreglo procesado",this.vacciness)
+      console.log(`id animal ver vacunas:${id}`)
+
+      this.vaccineService.getVaccines(id).then(response =>{
+        this.vacciness = this.buildVaccineFromResponseData(response.data)
+        console.log(`vacunas:${this.vacciness}`)
       })
+
+      this.animalsApiService.getById(id).then(response =>{
+        this.nameAnimal = response.data.name;
+
+        this.idAnimal= response.data.idAnimal;
+        console.log(`name animal ver vacunas:${this.nameAnimal}`)
+        console.log(`id animal ver vacunas:${this.idAnimal}`)
+      })
+
     }
 
   }

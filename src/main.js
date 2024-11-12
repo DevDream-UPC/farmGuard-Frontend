@@ -22,6 +22,8 @@ import Toolbar from 'primevue/toolbar';
 import Menu from 'primevue/menu';
 import InputMask from 'primevue/inputmask';
 import DatePicker from 'primevue/datepicker';
+import ProgressBar from 'primevue/progressbar';
+import Password from 'primevue/password';
 
 createApp(App)
     .use(router)
@@ -29,6 +31,8 @@ createApp(App)
     .use(PrimeVue,{ripple:true,
         theme: {preset:Aura
         }})
+    .component(`pv-password`,Password)
+    .component(`pv-progress-bar`,ProgressBar)
     .component(`pv-input-date`,DatePicker)
     .component(`pv-input-mask`,InputMask)
     .component(`pv-menu`, Menu)
